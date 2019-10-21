@@ -1,0 +1,46 @@
+.App {
+  text-align: center;
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 1fr 8fr 1fr;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  background-color: #242a2f;
+  height: 100vh;
+  margin: 0em;
+  font-family: "Shojumaru", cursive;
+  font-weight: 100;
+}
+
+p {
+  font-size: 1.2em;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input[type="submit"] {
+  border: 2px solid gold;
+  font-family: "Shojumaru", cursive;
+  font-size: 14px;
+  border-radius: 5px;
+  color: white;
+  background-color: #242a2f;
+  padding: 0.88em 1.38em;
+}
+
+button:hover {
+  background-color: #444444;
+  cursor: pointer;
+}
+
+/* #181c1f */

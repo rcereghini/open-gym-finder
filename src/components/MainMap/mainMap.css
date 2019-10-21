@@ -1,0 +1,19 @@
+.gm-style .gm-style-iw-c {
+  border: 1px solid gold;
+  width: 90vw;
+  padding: 0em;
+  max-width: 90vw !important;
+  min-width: 90vw !important;
+}
+
+.gm-style-iw-d {
+  max-width: 90vw !important;
+  min-width: 90vw !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+
+.gm-style .gm-style-iw-t::after {
+  background: #242a2f;
+  border: 2px solid gold;
+}
