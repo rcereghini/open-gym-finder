@@ -1,4 +1,94 @@
-.addNewGym:hover {
+hr {
+  margin: 1em;
+  background-color: gold;
+}
+
+h2 {
+  color: white;
+  margin: 1.5em;
+}
+
+select {
+  margin-left: 2em;
+  background-color: white;
+}
+
+.user-dashboard-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-stats {
+  border: 2px solid gold;
+  border-radius: 5px;
+  padding: 0.7em;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-top: 0.7em;
+}
+
+.avatar-image {
+  height: 32vw;
+}
+
+.user-stats-details {
+  color: white;
+  margin: 1em;
+  border-box: content-box;
+  font-size: 14px;
+}
+
+.gym-set-add-wrap {
+  width: 100%;
+  margin-top: 0.7em;
+  color: white;
+  display: grid;
+  height: 16vh;
+  grid-template-columns: 1fr 1fr;
+}
+
+.gym-set-add-button {
+  height: 16vh;
+  border: 2px solid gold;
+  border-radius: 5px;
+  margin-right: 0.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gym-set-add-button:hover {
   background-color: lightslategray;
   cursor: pointer;
+}
+
+.gym-add-confirm {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gym-add-confirm > button {
+  width: 35vw;
+}
+
+.settings-main {
+  border: 2px solid gold;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  margin-top: 0.7em;
+  color: white;
+  margin-bottom: 0.7em;
+}
+
+.settings-label {
+  text-align: right;
+  display: grid;
+  grid-template-columns: 1.75fr 1fr;
+  margin-right: 1em;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import AddGymForm from "../AddGymForm/AddGymForm";
 import { firestore } from "../../firebase/firebase.utils";
 import "./userDashboard.css";
 import avatar01 from "../../assets/avatar01.png";
@@ -6,7 +7,10 @@ import avatar01 from "../../assets/avatar01.png";
 class UserDashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      addNewGymVisible: false,
+      addNewGymConfirm: false
+    };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,135 +33,78 @@ class UserDashboard extends React.Component {
     event.preventDefault();
   }
 
+  toggleAddNewGym = () => {
+    this.setState({
+      addNewGymVisible: !this.state.addNewGymVisible
+    });
+  };
+
+  addNewGymConfirm = () => {
+    this.setState({
+      addNewGymConfirm: !this.state.addNewGymConfirm
+    });
+  };
+
   render() {
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
-        <div
-          style={{
-            border: "2px solid gold",
-            borderRadius: "5px",
-            padding: ".7em",
-            display: "grid",
-            gridTemplateColumns: "1fr 2fr",
-
-            marginTop: ".7em"
-          }}
-        >
-          <img style={{ height: "32vw" }} src={avatar01} />
-          <div
-            style={{
-              color: "white",
-              margin: "1em",
-              borderBox: "content-box",
-              fontSize: "14px"
-            }}
-          >
-            BcFighter<br></br> Robert Cereghini<br></br> rcereghini@gmail.com
+      <div className="user-dashboard-main">
+        {!this.state.addNewGymVisible ? (
+          <div className="user-stats">
+            <img className="avatar-image" src={avatar01} />
+            <div className="user-stats-details">
+              BcFighter<br></br>
+              Robert Cereghini<br></br>
+              rcereghini@gmail.com
+            </div>
           </div>
-        </div>
-        <div
-          style={{
-            width: "100%",
-            marginTop: ".7em",
-            color: "white",
-            display: "grid",
-            height: "16vh",
-            gridTemplateColumns: "1fr 1fr"
-          }}
-        >
-          <div
-            style={{
-              height: "16vh",
-              border: "2px solid gold",
-              borderRadius: "5px",
-              marginRight: ".2em",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
-            Set Home Gym
+        ) : null}
+        {this.state.addNewGymVisible && !this.state.addNewGymConfirm ? (
+          <div className="gym-add-confirm" style={{ height: "100%" }}>
+            <h2>
+              NOTICE: Your gym must be verified before listing open mats. This
+              may take up to 48 hours.
+            </h2>
+            <button onClick={this.addNewGymConfirm}>Continue</button>
           </div>
-          <div
-            className="addNewGym"
-            style={{
-              height: "16vh",
-              border: "2px solid gold",
-              borderRadius: "5px",
-              marginLeft: ".2em",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }}
-          >
+        ) : null}
+        {this.state.addNewGymVisible && this.state.addNewGymConfirm ? (
+          <AddGymForm />
+        ) : null}
+        <div className="gym-set-add-wrap">
+          <div className="gym-set-add-button">Set Home Gym</div>
+          <div className="gym-set-add-button" onClick={this.toggleAddNewGym}>
             Add New Gym
           </div>
         </div>
-        <div
-          style={{
-            border: "2px solid gold",
-            borderRadius: "5px",
-            width: "100%",
-            height: "100%",
-            marginTop: ".7em",
-            color: "white",
-            marginBottom: ".7em"
-          }}
-        >
-          <h2>Settings</h2>
-          <hr style={{ margin: "1em", backgroundColor: "gold" }}></hr>
-          <label
-            style={{
-              textAlign: "right",
-              display: "grid",
-              gridTemplateColumns: "1.75fr 1fr",
-              marginRight: "1em"
-            }}
-          >
-            Disable Messaging:
-            <select style={{ marginLeft: "2em", backgroundColor: "white" }}>
-              <option>Disabled</option>
-              <option>Enable</option>
-            </select>
-          </label>
-          <br></br>
-          <label
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1.75fr 1fr",
-              marginRight: "1em",
-              textAlign: "right"
-            }}
-          >
-            Share Schedule:
-            <select style={{ marginLeft: "2em", backgroundColor: "white" }}>
-              <option>Disabled</option>
-              <option>Enable</option>
-            </select>
-          </label>
-          <br></br>
-          <label
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1.75fr 1fr",
-              marginRight: "1em",
-              textAlign: "right"
-            }}
-          >
-            Push Notifications:
-            <select style={{ marginLeft: "2em", backgroundColor: "white" }}>
-              <option>Disabled</option>
-              <option>Enable</option>
-            </select>
-          </label>
-        </div>
+        {!this.state.addNewGymVisible ? (
+          <div className="settings-main">
+            <h2>Settings</h2>
+            <hr />
+            <label className="settings-label" style={{}}>
+              Disable Messaging:
+              <select>
+                <option>Disabled</option>
+                <option>Enable</option>
+              </select>
+            </label>
+            <br></br>
+            <label className="settings-label">
+              Share Schedule:
+              <select>
+                <option>Disabled</option>
+                <option>Enable</option>
+              </select>
+            </label>
+            <br></br>
+            <label className="settings-label">
+              Push Notifications:
+              <select>
+                <option>Disabled</option>
+                <option>Enable</option>
+              </select>
+            </label>
+          </div>
+        ) : null}
       </div>
     );
   }

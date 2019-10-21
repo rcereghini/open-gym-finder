@@ -4,12 +4,13 @@ form {
   border: 1px solid gold;
   padding: 1em;
   border-radius: 5px;
-  width: 90vw;
+  width: 100vw;
+  margin-top: 0.7em;
 }
 
 form > label {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 145px 1fr;
 }
 
 .submit-button {

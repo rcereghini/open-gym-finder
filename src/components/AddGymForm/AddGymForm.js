@@ -130,16 +130,7 @@ class AddGymForm extends React.Component {
             onChange={this.handleInputChange}
           />
         </label>
-        <br />
-        <label>
-          Stars:
-          <input
-            name="stars"
-            type="number"
-            value={this.state.stars}
-            onChange={this.handleInputChange}
-          />
-        </label>
+
         <div className="submit-button-wrap">
           <input className="submit-button" type="submit" value="Submit" />
         </div>
