@@ -78,7 +78,13 @@ class App extends React.Component {
             }
             //
           />
-          <Route exact path="/user" component={UserDashboard} />
+          <Route
+            exact
+            path="/user"
+            render={() =>
+              this.props.currentUser ? <UserDashboard /> : <Redirect to="/" />
+            }
+          />
           <Route
             exact
             path="/roam"
