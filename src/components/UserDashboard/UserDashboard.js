@@ -73,7 +73,7 @@ class UserDashboard extends React.Component {
         <div className="gym-set-add-wrap">
           <div className="gym-set-add-button">Set Home Gym</div>
           <div className="gym-set-add-button" onClick={this.toggleAddNewGym}>
-            Add New Gym
+            {!this.state.addNewGymVisible ? "Add New Gym" : "Back To Profile"}
           </div>
         </div>
         {!this.state.addNewGymVisible ? (
