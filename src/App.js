@@ -47,21 +47,27 @@ class App extends React.Component {
           href="https://fonts.googleapis.com/css?family=Shojumaru&display=swap"
           rel="stylesheet"
         ></link>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            borderBottom: "3px solid gold"
-          }}
-        >
-          <p
-            style={{ fontSize: "24px", color: "white" }}
-            onClick={() => auth.signOut()}
+        {this.props.currentUser ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              borderBottom: "3px solid gold"
+            }}
           >
-            {this.props.currentUser ? "Logout" : ""}
-          </p>
-        </div>
-        {/* <Header/> */}
+            <Header currentUser={this.props.currentUser} />
+
+            <p
+              style={{ fontSize: "24px", color: "white" }}
+              onClick={() => auth.signOut()}
+            >
+              {this.props.currentUser ? "Logout" : ""}
+            </p>
+          </div>
+        ) : (
+          <div></div>
+        )}
+
         <Switch>
           <Route
             exact
@@ -73,20 +79,30 @@ class App extends React.Component {
             //
           />
           <Route exact path="/user" component={UserDashboard} />
-          <Route exact path="/roam" component={MainMap} />
+          <Route
+            exact
+            path="/roam"
+            render={() =>
+              this.props.currentUser ? <MainMap /> : <Redirect to="/" />
+            }
+          />
+          {/* component={MainMap}  */}
           <Route
             exact
             path="/"
             render={() => (this.props.currentUser ? <MainMap /> : <SignIn />)}
           />
-          '
-          <Route exact path="/signup" component={SignUp} />'
-          {/* <Route exact path='/shop' component={ShopPage} /> 
-            <Route exact exact path='/signin' render={() => this.props.currentUser ? (<Redirect to='/' />) : (<SignInOnlyPage />)} /> 
-            <Route exact exact path='/signup' render={() => this.props.currentUser ? (<Redirect to='/' />) : (<SignUpOnlyPage />)} />  */}
+
+          <Route
+            exact
+            path="/signup"
+            render={() =>
+              this.props.currentUser ? <Redirect to="/" /> : <SignUp />
+            }
+          />
         </Switch>
         {/* <MainMap />  */}
-        <BottomNavigation />
+        {this.props.currentUser ? <BottomNavigation /> : null}
       </div>
     );
   }

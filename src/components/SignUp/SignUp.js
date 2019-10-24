@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import {
   auth,
   createUserProfileDocument,
@@ -58,6 +58,19 @@ class SignUp extends React.Component {
 
     return (
       <div className="form-wrap">
+        <Link
+          to="/"
+          style={{
+            position: "fixed",
+            top: "1em",
+            right: "1em",
+            fontSize: 24,
+            color: "white",
+            textDecoration: "none"
+          }}
+        >
+          Back
+        </Link>
         <form onSubmit={this.handleSubmit}>
           <label>
             Display Name:

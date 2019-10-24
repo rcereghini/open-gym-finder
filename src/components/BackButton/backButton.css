@@ -1,0 +1,17 @@
+.backButton {
+  font-size: 24px;
+  color: white;
+  float: right;
+}
+
+.backButton:visited {
+  color: white;
+}
+
+.backButton:active {
+  color: white;
+}
+
+.backButton:link {
+  color: white;
+}

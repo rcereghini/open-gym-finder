@@ -2,13 +2,14 @@ import React from "react";
 import "./signIn.css";
 
 import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
+import { Link } from "react-router-dom";
 
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: null,
-      password: null
+      email: "",
+      password: ""
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -69,6 +70,19 @@ class SignIn extends React.Component {
               Sign In With Google
             </button>
           </div>
+          <Link
+            to="/signup"
+            style={{
+              color: "white",
+              textDecoration: "none",
+              fontSize: ".8em",
+              borderBottom: "1px solid gold",
+              paddingBottom: "1px",
+              cursor: "pointer"
+            }}
+          >
+            New to this? Get Started Now!
+          </Link>
         </form>
       </div>
     );

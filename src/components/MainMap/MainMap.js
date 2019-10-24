@@ -67,8 +67,6 @@ export class MainMap extends Component {
           id="mapComponent"
           google={this.props.google}
           zoom={10}
-          // fullscreenControl={false}
-          // zoomControl={false}
           disableDefaultUI={true}
           style={{ height: "80vh", position: "static" }}
           initialCenter={{
