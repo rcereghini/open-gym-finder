@@ -3,6 +3,7 @@ import AddGymForm from "../AddGymForm/AddGymForm";
 import { firestore } from "../../firebase/firebase.utils";
 import "./userDashboard.css";
 import avatar01 from "../../assets/avatar01.png";
+import { isFlowBaseAnnotation } from "@babel/types";
 
 class UserDashboard extends React.Component {
   constructor(props) {
@@ -35,7 +36,8 @@ class UserDashboard extends React.Component {
 
   toggleAddNewGym = () => {
     this.setState({
-      addNewGymVisible: !this.state.addNewGymVisible
+      addNewGymVisible: !this.state.addNewGymVisible,
+      addNewGymConfirm: false
     });
   };
 

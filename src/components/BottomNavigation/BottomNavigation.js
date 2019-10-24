@@ -10,8 +10,8 @@ const BottomNavigation = () => {
         borderTop: "3px solid gold"
       }}
     >
-      <h1 style={{ margin: "0em", fontSize: "18px" }}>
-        STRIPES | AVATAR | FIND NEXT
+      <h1 style={{ margin: "0em", fontSize: "15px" }}>
+        ACHIEVEMENTS | SCHEDULE | MAIL
       </h1>
     </div>
   );
