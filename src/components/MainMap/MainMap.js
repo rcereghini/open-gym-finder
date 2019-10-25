@@ -94,7 +94,17 @@ export class MainMap extends Component {
             onClose={this.onClose}
             style={{ width: "100%", border: "1px solid gold" }}
           >
-            <MarkerModal />
+            <MarkerModal
+              gym={{
+                name: "Gym of Bob",
+                description: "A really great place.",
+                challengeRemainingCount: 3
+              }}
+              nextOpenMat={{
+                time: "Monday, June 15th, 5:30PM",
+                attendeeCount: 1337
+              }}
+            />
           </InfoWindow>
         </Map>
       </div>
