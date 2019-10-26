@@ -14,7 +14,7 @@ const MarkerModal = props => {
       <div className="marker-modal-inner-div">
         <div className="gym-details">
           <p>
-            Next Open Mat: <span>{props.nextOpenMat.time}</span>
+            Next Open Mat: <span>{props.gym.nextOpenMat.time}</span>
           </p>
           <h1>{props.gym.name}</h1>
           <p>⭐⭐⭐⭐⭐</p>
@@ -36,7 +36,7 @@ const MarkerModal = props => {
         <div className="gym-challenges">
           Gym Challenges
           <span style={{ float: "right" }}>
-            ({props.gym.challenges.remainingChallenges}) v
+            ({props.user.challenges.remainingChallenges}) v
           </span>
         </div>
       </div>

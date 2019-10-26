@@ -33,6 +33,23 @@ export class MainMap extends Component {
       .catch(err => {
         console.log("Error getting documents", err);
       });
+
+    // firestore
+    //   .collection("gym")
+    //   .doc()
+    //   .set({
+    //     name: "Gym of Bob",
+    //     description: "A really great place.",
+    //     challengeRemainingCount: 3,
+    //     nextOpenMat: {
+    //       time: "Monday, June 15th, 5:30PM",
+    //       attendeeCount: 1337
+    //     },
+    //     location: {
+    //       lat: 33.40371,
+    //       lng: 111.97223
+    //     }
+    //   });
   }
 
   onMarkerClick = (props, marker, e) => {
@@ -75,18 +92,20 @@ export class MainMap extends Component {
           }}
         >
           {this.state.markers.map((marker, i) => {
-            return marker ? (
+            return marker.location ? (
               <Marker
                 key={i + 1}
                 onClick={this.onMarkerClick}
                 name={i + 1}
                 position={{
-                  lat: marker.lat,
-                  lng: marker.lng
+                  lat: marker.location.lat,
+                  lng: marker.location.lng
                 }}
               />
             ) : null;
           })}
+
+          {}
 
           <InfoWindow
             marker={this.state.activeMarker}
@@ -98,12 +117,13 @@ export class MainMap extends Component {
               gym={{
                 name: "Gym of Bob",
                 description: "A really great place.",
-                challengeRemainingCount: 3
+                challengeRemainingCount: 3,
+                nextOpenMat: {
+                  time: "Monday, June 15th, 5:30PM",
+                  attendeeCount: 1337
+                }
               }}
-              nextOpenMat={{
-                time: "Monday, June 15th, 5:30PM",
-                attendeeCount: 1337
-              }}
+              user={{ challenges: { remainingChallenges: 4 } }}
             />
           </InfoWindow>
         </Map>
