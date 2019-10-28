@@ -24,24 +24,24 @@ const Header = props => {
             style={{
               color: "white",
               textDecoration: "none",
-              fontSize: 24,
+              fontSize: 16,
               marginRight: "1.5em"
             }}
           >
             Profile
           </Link>
           <Link
-            to={"/roam"}
-            style={{ color: "white", textDecoration: "none", fontSize: 24 }}
+            to={"/settings"}
+            style={{ color: "white", textDecoration: "none", fontSize: 16 }}
           >
-            Find
+            Settings
           </Link>
         </div>
       ) : (
         <Link
           to="/"
           style={{
-            fontSize: 24,
+            fontSize: 16,
             color: "white",
             textDecoration: "none",
             marginLeft: ".5em"

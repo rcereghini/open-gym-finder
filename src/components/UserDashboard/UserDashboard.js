@@ -1,6 +1,7 @@
 import React from "react";
 import AddGymForm from "../AddGymForm/AddGymForm";
 import GymList from "../GymList/GymList";
+import Settings from "../Settings/Settings";
 import { firestore } from "../../firebase/firebase.utils";
 import "./userDashboard.css";
 import avatar01 from "../../assets/avatar01.png";
@@ -115,35 +116,25 @@ class UserDashboard extends React.Component {
             {!this.state.addNewGymVisible ? "Add New Gym" : "Back To Profile"}
           </div>
         </div>
-        {!this.state.addNewGymVisible && !this.state.findGymVisible ? (
-          <div className="settings-main">
-            <h2>Settings</h2>
-            <hr />
-            <label className="settings-label" style={{}}>
-              Disable Messaging:
-              <select>
-                <option>Disabled</option>
-                <option>Enable</option>
-              </select>
-            </label>
-            <br></br>
-            <label className="settings-label">
-              Share Schedule:
-              <select>
-                <option>Disabled</option>
-                <option>Enable</option>
-              </select>
-            </label>
-            <br></br>
-            <label className="settings-label">
-              Push Notifications:
-              <select>
-                <option>Disabled</option>
-                <option>Enable</option>
-              </select>
-            </label>
-          </div>
-        ) : null}
+        <div
+          style={{
+            height: "100%",
+            border: "3px solid gold",
+            width: "100vw",
+            margin: ".5em 0em",
+            borderRadius: "5px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <h1 style={{ color: "white", fontSize: "14px" }}>
+            Additional stats to go here.
+          </h1>
+        </div>
+        {/* {!this.state.addNewGymVisible && !this.state.findGymVisible ? (
+          <Settings />
+        ) : null} */}
       </div>
     );
   }

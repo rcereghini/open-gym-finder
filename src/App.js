@@ -15,6 +15,7 @@ import "./App.css";
 import UserDashboard from "./components/UserDashboard/UserDashboard";
 import Achievements from "./components/Achievements/Achievements";
 import Schedule from "./components/Schedule/Schedule";
+import Settings from "./components/Settings/Settings";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -60,7 +61,7 @@ class App extends React.Component {
             <Header currentUser={this.props.currentUser} />
 
             <p
-              style={{ fontSize: "24px", color: "white" }}
+              style={{ fontSize: "16px", color: "white" }}
               onClick={() => auth.signOut()}
             >
               {this.props.currentUser ? "Logout" : ""}
@@ -99,6 +100,13 @@ class App extends React.Component {
             path="/schedule"
             render={() =>
               this.props.currentUser ? <Schedule /> : <Redirect to="/" />
+            }
+          />
+          <Route
+            exact
+            path="/settings"
+            render={() =>
+              this.props.currentUser ? <Settings /> : <Redirect to="/" />
             }
           />
           <Route

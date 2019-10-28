@@ -16,7 +16,7 @@ const BottomNavigation = () => {
         style={{
           color: "white",
           textDecoration: "none",
-          fontSize: 11,
+          fontSize: 8,
           zIndex: 5
         }}
       >
@@ -27,11 +27,23 @@ const BottomNavigation = () => {
         style={{
           color: "white",
           textDecoration: "none",
-          fontSize: 11,
+          fontSize: 8,
           zIndex: 5
         }}
       >
         <h2>SCHEDULE</h2>
+        <i class="fas fa-trophy"></i>
+      </Link>
+      <Link
+        to={"/roam"}
+        style={{
+          color: "white",
+          textDecoration: "none",
+          fontSize: 8,
+          zIndex: 5
+        }}
+      >
+        <h2>FIND</h2>
       </Link>
       {/* <h1 style={{ margin: "0em", fontSize: "15px" }}>| SCHEDULE | MAIL</h1> */}
     </div>
