@@ -14,7 +14,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import UserDashboard from "./components/UserDashboard/UserDashboard";
 import Achievements from "./components/Achievements/Achievements";
-import Schedule from "./components/Achievements/Achievements";
+import Schedule from "./components/Schedule/Schedule";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
