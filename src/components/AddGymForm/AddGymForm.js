@@ -1,20 +1,22 @@
 import React from "react";
 import { firestore } from "../../firebase/firebase.utils";
 import "./addGymForm.css";
+import { getAddressCoordinates } from "../../geo/googleMaps";
 
 class AddGymForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addressOne: "",
-      addressTwo: "",
+      address1: "",
+      address2: "",
       city: "",
       state: "",
       zip: "",
       phone: "",
       website: "",
       type: "",
-      gymName: ""
+      gymName: "",
+      description: ""
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -31,11 +33,23 @@ class AddGymForm extends React.Component {
     });
   }
 
-  handleSubmit(event) {
-    firestore.collection("gym").add({
-      ...this.state
-    });
+  async handleSubmit(event) {
     event.preventDefault();
+    let address = { ...this.state };
+
+    let coordinates = await getAddressCoordinates(address).then(response => {
+      return response;
+    });
+
+    console.log("coordinates ===>", coordinates);
+
+    // this.setState({ address }, () => {});
+
+    const { phone, website, description, type, gymName } = this.state;
+
+    firestore
+      .collection("gym")
+      .add({ phone, website, type, gymName, description, coordinates });
   }
 
   render() {
@@ -74,9 +88,9 @@ class AddGymForm extends React.Component {
         <label>
           Address 1:
           <input
-            name="addressOne"
+            name="address1"
             type="text"
-            value={this.state.addressOne}
+            value={this.state.address1}
             onChange={this.handleInputChange}
           />
         </label>
@@ -84,9 +98,9 @@ class AddGymForm extends React.Component {
         <label>
           Address 2:
           <input
-            name="addressTwo"
+            name="address2"
             type="text"
-            value={this.state.addressTwo}
+            value={this.state.address2}
             onChange={this.handleInputChange}
           />
         </label>
@@ -127,6 +141,16 @@ class AddGymForm extends React.Component {
             name="type"
             type="text"
             value={this.state.type}
+            onChange={this.handleInputChange}
+          />
+        </label>
+        <label style={{ marginTop: "1em" }}>
+          Description:
+          <textarea
+            name="description"
+            type="text"
+            rows="5"
+            value={this.state.description}
             onChange={this.handleInputChange}
           />
         </label>

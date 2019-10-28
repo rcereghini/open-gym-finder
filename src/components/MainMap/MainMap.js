@@ -11,7 +11,7 @@ export class MainMap extends Component {
 
     this.state = {
       markers: [],
-      selectedPlace: {}
+      selectedMarker: {}
     };
   }
 
@@ -34,6 +34,14 @@ export class MainMap extends Component {
         console.log("Error getting documents", err);
       });
 
+    let address = {
+      address1: "6407 s mcallister",
+      address2: "ave",
+      city: "tempe",
+      state: "az",
+      zip: "85283"
+    };
+
     // firestore
     //   .collection("gym")
     //   .doc()
@@ -53,16 +61,18 @@ export class MainMap extends Component {
   }
 
   onMarkerClick = (props, marker, e) => {
-    console.log("props, marker, e", props, marker, e);
+    console.log("props, marker, e", props, marker, e, this);
+    console.log();
+    console.log("this.selectedMarker ===>", this.state.selectedMarker);
     !this.state.showingInfoWindow || marker.name != this.state.currentMarker
       ? this.setState({
-          selectedPlace: props,
+          selectedMarker: this.state.markers[props.name - 1],
           activeMarker: marker,
           currentMarker: marker.name,
           showingInfoWindow: true
         })
       : this.setState({
-          selectedPlace: props,
+          selectedMarker: props,
           activeMarker: null,
           showingInfoWindow: false
         });
@@ -78,6 +88,7 @@ export class MainMap extends Component {
   };
 
   render() {
+    console.log("this.state.markers ===>", this.state.markers);
     return (
       <div id="main" style={{ width: "100%" }}>
         <Map
@@ -92,14 +103,14 @@ export class MainMap extends Component {
           }}
         >
           {this.state.markers.map((marker, i) => {
-            return marker.location ? (
+            return marker.coordinates ? (
               <Marker
                 key={i + 1}
                 onClick={this.onMarkerClick}
                 name={i + 1}
                 position={{
-                  lat: marker.location.lat,
-                  lng: marker.location.lng
+                  lat: marker.coordinates.results[0].geometry.location.lat,
+                  lng: marker.coordinates.results[0].geometry.location.lng
                 }}
               />
             ) : null;
@@ -115,8 +126,8 @@ export class MainMap extends Component {
           >
             <MarkerModal
               gym={{
-                name: "Gym of Bob",
-                description: "A really great place.",
+                name: this.state.selectedMarker.gymName,
+                description: this.state.selectedMarker.description,
                 challengeRemainingCount: 3,
                 nextOpenMat: {
                   time: "Monday, June 15th, 5:30PM",
