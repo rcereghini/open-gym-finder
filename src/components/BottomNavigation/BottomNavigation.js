@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BottomNavigation = () => {
   return (
@@ -10,9 +11,29 @@ const BottomNavigation = () => {
         borderTop: "3px solid gold"
       }}
     >
-      <h1 style={{ margin: "0em", fontSize: "15px" }}>
-        ACHIEVEMENTS | SCHEDULE | MAIL
-      </h1>
+      <Link
+        to={"/achievements"}
+        style={{
+          color: "white",
+          textDecoration: "none",
+          fontSize: 11,
+          zIndex: 5
+        }}
+      >
+        <h2>ACHIEVEMENTS</h2>
+      </Link>
+      <Link
+        to={"/schedule"}
+        style={{
+          color: "white",
+          textDecoration: "none",
+          fontSize: 11,
+          zIndex: 5
+        }}
+      >
+        <h2>SCHEDULE</h2>
+      </Link>
+      {/* <h1 style={{ margin: "0em", fontSize: "15px" }}>| SCHEDULE | MAIL</h1> */}
     </div>
   );
 };

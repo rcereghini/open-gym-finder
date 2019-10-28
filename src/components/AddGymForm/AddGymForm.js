@@ -41,10 +41,6 @@ class AddGymForm extends React.Component {
       return response;
     });
 
-    console.log("coordinates ===>", coordinates);
-
-    // this.setState({ address }, () => {});
-
     const { phone, website, description, type, gymName } = this.state;
 
     firestore

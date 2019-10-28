@@ -13,6 +13,8 @@ import BottomNavigation from "./components/BottomNavigation/BottomNavigation";
 import logo from "./logo.svg";
 import "./App.css";
 import UserDashboard from "./components/UserDashboard/UserDashboard";
+import Achievements from "./components/Achievements/Achievements";
+import Schedule from "./components/Achievements/Achievements";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -83,6 +85,20 @@ class App extends React.Component {
             path="/user"
             render={() =>
               this.props.currentUser ? <UserDashboard /> : <Redirect to="/" />
+            }
+          />
+          <Route
+            exact
+            path="/achievements"
+            render={() =>
+              this.props.currentUser ? <Achievements /> : <Redirect to="/" />
+            }
+          />
+          <Route
+            exact
+            path="/schedule"
+            render={() =>
+              this.props.currentUser ? <Schedule /> : <Redirect to="/" />
             }
           />
           <Route
