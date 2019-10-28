@@ -89,7 +89,7 @@ class UserDashboard extends React.Component {
           style={
             !this.state.addNewGymVisible && !this.state.findGymVisible
               ? { height: "16vh" }
-              : { height: "10vh" }
+              : { height: "10vh", marginBottom: ".7em" }
           }
         >
           <div
@@ -98,7 +98,7 @@ class UserDashboard extends React.Component {
             style={
               !this.state.addNewGymVisible && !this.state.findGymVisible
                 ? { height: "16vh" }
-                : { height: "10vh" }
+                : { height: "10vh", marginBottom: ".7em" }
             }
           >
             {!this.state.findGymVisible ? "Set Home Gym" : "Back To Profile"}
@@ -109,7 +109,7 @@ class UserDashboard extends React.Component {
             style={
               !this.state.addNewGymVisible && !this.state.findGymVisible
                 ? { height: "16vh" }
-                : { height: "10vh" }
+                : { height: "10vh", marginBottom: ".7em" }
             }
           >
             {!this.state.addNewGymVisible ? "Add New Gym" : "Back To Profile"}
