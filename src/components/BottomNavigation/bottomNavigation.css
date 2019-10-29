@@ -1,0 +1,33 @@
+.bottom-nav-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  border-top: 3px solid gold;
+}
+
+.link-styles {
+  color: white;
+  text-decoration: none;
+  font-size: 8;
+  z-index: 5;
+  /* border: 1px solid gold; */
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-right: 0px;
+  background: rgb(33, 37, 41);
+  background: linear-gradient(
+    0deg,
+    rgba(33, 37, 41, 1) 0%,
+    rgba(60, 60, 71, 1) 100%
+  );
+}
+
+.link-styles:last-child {
+  /* border-right: 1px solid gold; */
+}
+
+.icon-styles {
+  color: white;
+  font-size: 40px;
+}

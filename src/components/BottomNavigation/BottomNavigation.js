@@ -1,51 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrophy,
+  faCalendarAlt,
+  faMapMarkedAlt
+} from "@fortawesome/free-solid-svg-icons";
+
+import "./bottomNavigation.css";
 
 const BottomNavigation = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        borderTop: "3px solid gold"
-      }}
-    >
-      <Link
-        to={"/achievements"}
-        style={{
-          color: "white",
-          textDecoration: "none",
-          fontSize: 8,
-          zIndex: 5
-        }}
-      >
-        <h2>ACHIEVEMENTS</h2>
+    <div className="bottom-nav-main">
+      <Link to={"/achievements"} className="link-styles">
+        <FontAwesomeIcon icon={faTrophy} className="icon-styles" />
       </Link>
-      <Link
-        to={"/schedule"}
-        style={{
-          color: "white",
-          textDecoration: "none",
-          fontSize: 8,
-          zIndex: 5
-        }}
-      >
-        <h2>SCHEDULE</h2>
-        <i class="fas fa-trophy"></i>
+      <Link to={"/roam"} className="link-styles">
+        <FontAwesomeIcon icon={faMapMarkedAlt} className="icon-styles" />
       </Link>
-      <Link
-        to={"/roam"}
-        style={{
-          color: "white",
-          textDecoration: "none",
-          fontSize: 8,
-          zIndex: 5
-        }}
-      >
-        <h2>FIND</h2>
+      <Link to={"/schedule"} className="link-styles">
+        <FontAwesomeIcon
+          icon={faCalendarAlt}
+          className="icon-styles"
+        ></FontAwesomeIcon>
       </Link>
-      {/* <h1 style={{ margin: "0em", fontSize: "15px" }}>| SCHEDULE | MAIL</h1> */}
     </div>
   );
 };

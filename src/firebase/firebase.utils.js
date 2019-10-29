@@ -22,7 +22,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   const snapShot = await userRef.get();
 
   if (!snapShot.exists) {
-    console.log(snapShot.data());
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
@@ -31,8 +30,6 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName,
         email,
         createdAt,
-        tutorialCompleted: false,
-        tutorialCurrentPage: 1,
         ...additionalData
       });
     } catch (error) {
@@ -50,7 +47,7 @@ export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
-// .then(console.log("cooookies!"));
+export const signInWithGoogle = () =>
+  auth.signInWithPopup(provider).then(test => console.log("test ===>", test));
 
 export default firebase;

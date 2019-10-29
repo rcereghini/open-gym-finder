@@ -12,6 +12,8 @@ class SignUp extends React.Component {
 
     this.state = {
       displayName: "",
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
       confirmPassword: ""
@@ -38,6 +40,8 @@ class SignUp extends React.Component {
 
       this.setState({
         displayName: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
         confirmPassword: ""
@@ -54,7 +58,14 @@ class SignUp extends React.Component {
   };
 
   render() {
-    const { displayName, email, password, confirmPassword } = this.state;
+    const {
+      firstName,
+      lastName,
+      displayName,
+      email,
+      password,
+      confirmPassword
+    } = this.state;
 
     return (
       <div className="form-wrap">
@@ -78,6 +89,28 @@ class SignUp extends React.Component {
               name="displayName"
               type="text"
               value={displayName}
+              onChange={this.handleInputChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            First Name:
+            <input
+              name="firstName"
+              type="text"
+              value={firstName}
+              onChange={this.handleInputChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            Last Name:
+            <input
+              name="lastName"
+              type="text"
+              value={lastName}
               onChange={this.handleInputChange}
               required
             />

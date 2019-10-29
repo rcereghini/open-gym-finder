@@ -56,6 +56,12 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgb(33, 37, 41);
+  background: linear-gradient(
+    0deg,
+    rgba(33, 37, 41, 1) 0%,
+    rgba(60, 60, 71, 1) 100%
+  );
 }
 
 .gym-set-add-button:hover {
@@ -90,4 +96,15 @@ select {
   display: grid;
   grid-template-columns: 1.75fr 1fr;
   margin-right: 1em;
+}
+
+.additional-stats-box {
+  height: 100%;
+  border: 3px solid gold;
+  width: 100vw;
+  margin: 0.5em 0em;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

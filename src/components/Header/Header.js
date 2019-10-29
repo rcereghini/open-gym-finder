@@ -8,6 +8,7 @@ const navigation = ["Map", "History", "Settings"];
 const Header = props => {
   return (
     <div
+      className="header-main-div"
       style={{
         display: "flex",
         justifyContent: "center",

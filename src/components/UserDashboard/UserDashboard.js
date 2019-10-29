@@ -16,6 +16,8 @@ class UserDashboard extends React.Component {
       findGymVisible: false
     };
 
+    console.log("test ===>", this.props.currentUser);
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -60,15 +62,18 @@ class UserDashboard extends React.Component {
   };
 
   render() {
+    const { displayName, email } = this.props;
+
     return (
       <div className="user-dashboard-main">
         {!this.state.addNewGymVisible && !this.state.findGymVisible ? (
           <div className="user-stats">
             <img className="avatar-image" src={avatar01} />
             <div className="user-stats-details">
-              BcFighter<br></br>
+              {this.props.currentUser.displayName}
+              <br></br>
               Robert Cereghini<br></br>
-              rcereghini@gmail.com
+              {this.props.currentUser.email}
             </div>
           </div>
         ) : null}
@@ -116,22 +121,13 @@ class UserDashboard extends React.Component {
             {!this.state.addNewGymVisible ? "Add New Gym" : "Back To Profile"}
           </div>
         </div>
-        <div
-          style={{
-            height: "100%",
-            border: "3px solid gold",
-            width: "100vw",
-            margin: ".5em 0em",
-            borderRadius: "5px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-        >
-          <h1 style={{ color: "white", fontSize: "14px" }}>
-            Additional stats to go here.
-          </h1>
-        </div>
+        {!this.state.addNewGymVisible && !this.state.findGymVisible ? (
+          <div className="additional-stats-box">
+            <h1 style={{ color: "white", fontSize: "14px" }}>
+              Additional stats to go here.
+            </h1>
+          </div>
+        ) : null}
         {/* {!this.state.addNewGymVisible && !this.state.findGymVisible ? (
           <Settings />
         ) : null} */}

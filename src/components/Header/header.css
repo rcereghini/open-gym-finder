@@ -1,3 +1,12 @@
 .header-buttons > p {
   margin-left: 0.7em;
 }
+
+.header-main-div {
+  /* background: rgb(33, 37, 41);
+  background: linear-gradient(
+    0deg,
+    rgba(33, 37, 41, 1) 0%,
+    rgba(60, 60, 71, 1) 100%
+  ); */
+}

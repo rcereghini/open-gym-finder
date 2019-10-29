@@ -35,6 +35,7 @@ class App extends React.Component {
         });
       }
 
+      console.log("userAuth ===>", userAuth);
       setCurrentUser(userAuth);
     });
   }
@@ -52,6 +53,7 @@ class App extends React.Component {
         ></link>
         {this.props.currentUser ? (
           <div
+            className="header-wrap"
             style={{
               display: "flex",
               justifyContent: "space-between",
@@ -85,7 +87,11 @@ class App extends React.Component {
             exact
             path="/user"
             render={() =>
-              this.props.currentUser ? <UserDashboard /> : <Redirect to="/" />
+              this.props.currentUser ? (
+                <UserDashboard currentUser={this.props.currentUser} />
+              ) : (
+                <Redirect to="/" />
+              )
             }
           />
           <Route

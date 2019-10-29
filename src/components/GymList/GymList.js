@@ -1,6 +1,7 @@
 import React from "react";
 
 import { firestore } from "../../firebase/firebase.utils";
+import "./gymList.css";
 
 let gyms = [1, 2, 3, 4, 5, 6, 7];
 
@@ -69,29 +70,20 @@ class GymList extends React.Component {
           value={this.state.gymSearchFilter}
           onChange={this.handleInputChange}
         ></input>
-        {gyms.map((gym, i) => {
-          console.log("gym ==>", gym);
-          let results = gym.coordinates.results[0];
-          return (
-            <p
-              style={{
-                border: "3px solid gold",
-                padding: "1em 2em",
-                margin: "0em",
-                marginBottom: ".2em",
-                fontSize: "14px",
-                width: "100vw"
-              }}
-              key={i + 1}
-            >
-              {gym.gymName}
-              <br></br>
-              {results.address_components[3].long_name +
-                ", " +
-                results.address_components[5].long_name}
-            </p>
-          );
-        })}
+        <div className="gym-list">
+          {gyms.map((gym, i) => {
+            let results = gym.coordinates.results[0];
+            return (
+              <p className="gym-item" key={i + 1}>
+                {gym.gymName}
+                <br></br>
+                {results.address_components[3].long_name +
+                  ", " +
+                  results.address_components[5].long_name}
+              </p>
+            );
+          })}
+        </div>
       </div>
     );
   }

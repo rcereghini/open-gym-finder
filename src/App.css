@@ -43,4 +43,13 @@ button:hover {
   cursor: pointer;
 }
 
+.header-wrap {
+  padding: 0em 1em;
+  background: rgb(33, 37, 41);
+  background: linear-gradient(
+    0deg,
+    rgba(33, 37, 41, 1) 0%,
+    rgba(60, 60, 71, 1) 100%
+  );
+}
 /* #181c1f */
