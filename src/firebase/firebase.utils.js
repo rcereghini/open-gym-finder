@@ -16,6 +16,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   //Commented until authentication works...
   if (!userAuth) return;
   const userRef = firestore.doc(`users/${userAuth.uid}`);
+  console.log("userRef", userRef);
 
   // const userRef = firestore.doc('users/9HGkgUwVRtItcoF3jC8T');
 

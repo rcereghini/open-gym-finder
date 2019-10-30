@@ -1,13 +1,16 @@
 import React, { Component } from "react";
-import { Map, InfoWindow, GoogleApiWrapper, Marker } from "google-maps-react";
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import MarkerModal from "../MarkerModal/MarkerModal";
+import InfoWindowEx from "./InfoWindowEx/InfoWindowEx";
 import { firestore } from "../../firebase/firebase.utils";
 
 import "./mainMap.css";
 
 export class MainMap extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    console.log("propppsps===>", this.props.currentUser);
 
     this.state = {
       markers: [],
@@ -118,11 +121,12 @@ export class MainMap extends Component {
 
           {}
 
-          <InfoWindow
+          <InfoWindowEx
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
             onClose={this.onClose}
             style={{ width: "100%", border: "1px solid gold" }}
+            currentUser={this.props.currentUser}
           >
             <MarkerModal
               gym={{
@@ -134,9 +138,9 @@ export class MainMap extends Component {
                   attendeeCount: 1337
                 }
               }}
-              user={{ challenges: { remainingChallenges: 4 } }}
+              currentUser={this.props.currentUser}
             />
-          </InfoWindow>
+          </InfoWindowEx>
         </Map>
       </div>
     );

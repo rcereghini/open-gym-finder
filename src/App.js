@@ -45,6 +45,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log("this.props.currentUser ===>", this.props.currentUser);
     return (
       <div className="App">
         <link
@@ -105,7 +106,11 @@ class App extends React.Component {
             exact
             path="/schedule"
             render={() =>
-              this.props.currentUser ? <Schedule /> : <Redirect to="/" />
+              this.props.currentUser ? (
+                <Schedule currentUser={this.props.currentUser} />
+              ) : (
+                <Redirect to="/" />
+              )
             }
           />
           <Route
@@ -119,14 +124,24 @@ class App extends React.Component {
             exact
             path="/roam"
             render={() =>
-              this.props.currentUser ? <MainMap /> : <Redirect to="/" />
+              this.props.currentUser ? (
+                <MainMap currentUser={this.props.currentUser} />
+              ) : (
+                <Redirect to="/" />
+              )
             }
           />
           {/* component={MainMap}  */}
           <Route
             exact
             path="/"
-            render={() => (this.props.currentUser ? <MainMap /> : <SignIn />)}
+            render={() =>
+              this.props.currentUser ? (
+                <MainMap currentUser={this.props.currentUser} />
+              ) : (
+                <SignIn />
+              )
+            }
           />
 
           <Route
