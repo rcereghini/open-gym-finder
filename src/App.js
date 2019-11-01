@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Header from "./components/Header/Header";
@@ -8,6 +8,7 @@ import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import BottomNavigation from "./components/BottomNavigation/BottomNavigation";
 import logo from "./logo.svg";
@@ -16,9 +17,17 @@ import UserDashboard from "./components/UserDashboard/UserDashboard";
 import Achievements from "./components/Achievements/Achievements";
 import Schedule from "./components/Schedule/Schedule";
 import Settings from "./components/Settings/Settings";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
+  constructor() {
+    super();
+
+    this.state = {
+      menuModalVisible: false
+    };
+  }
 
   componentDidMount() {
     const { setCurrentUser } = this.props;
@@ -61,14 +70,50 @@ class App extends React.Component {
               borderBottom: "3px solid gold"
             }}
           >
+            {this.state.menuModalVisible ? (
+              <div className="menu-modal-wrap">
+                <div
+                  className="menu-modal"
+                  style={{
+                    position: "fixed",
+                    top: "25vh",
+                    left: "10vw",
+                    height: "50vh",
+                    width: "80vw",
+                    border: "3px solid gold",
+                    zIndex: 10
+                  }}
+                >
+                  <Link
+                    to={"/settings"}
+                    onClick={() => this.setState({ menuModalVisible: false })}
+                  >
+                    <p>Settings</p>
+                  </Link>
+                  <p onClick={() => auth.signOut()}>Logout</p>
+                </div>
+              </div>
+            ) : null}
+
             <Header currentUser={this.props.currentUser} />
 
-            <p
-              style={{ fontSize: "16px", color: "white" }}
-              onClick={() => auth.signOut()}
+            <div
+              style={{ fontSize: "16px", color: "white", alignSelf: "center" }}
+              onClick={() =>
+                this.setState({
+                  menuModalVisible: !this.state.menuModalVisible
+                })
+              }
             >
-              {this.props.currentUser ? "Logout" : ""}
-            </p>
+              {this.props.currentUser ? (
+                <FontAwesomeIcon
+                  icon={faBars}
+                  className="bars-icon-styles"
+                ></FontAwesomeIcon>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
         ) : (
           <div></div>

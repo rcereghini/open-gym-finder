@@ -2,6 +2,9 @@ import React from "react";
 
 const Schedule = props => {
   const { currentUser } = props;
+
+  // const removeItem
+
   console.log("currentUser ===>", currentUser);
   return (
     <div style={{ color: "white", fontSize: "2em", marginTop: "1em" }}>

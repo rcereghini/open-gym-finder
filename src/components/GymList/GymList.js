@@ -3,7 +3,7 @@ import React from "react";
 import { firestore } from "../../firebase/firebase.utils";
 import "./gymList.css";
 
-let gyms = [1, 2, 3, 4, 5, 6, 7];
+// let gyms = [1, 2, 3, 4, 5, 6, 7];
 
 class GymList extends React.Component {
   constructor() {

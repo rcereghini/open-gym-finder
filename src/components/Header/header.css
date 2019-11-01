@@ -10,3 +10,12 @@
     rgba(60, 60, 71, 1) 100%
   ); */
 }
+
+.header-icon-styles {
+  font-size: 24px;
+  justify-self: flex-end;
+}
+
+.header-avatar-image {
+  height: 6.5vh;
+}

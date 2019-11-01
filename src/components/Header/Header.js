@@ -1,6 +1,9 @@
 import React from "react";
 import BackButton from "../BackButton/BackButton";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
+import avatar01 from "../../assets/avatar01.png";
 import "./header.css";
 
 const navigation = ["Map", "History", "Settings"];
@@ -18,24 +21,35 @@ const Header = props => {
       {props.currentUser ? (
         <div
           className="header-buttons"
-          style={{ display: "flex", flexDirection: "row" }}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
         >
           <Link
             to={"/user"}
             style={{
               color: "white",
               textDecoration: "none",
-              fontSize: 16,
-              marginRight: "1.5em"
+              fontSize: 16
+              // marginRight: "1.5em"
             }}
           >
-            Profile
+            <img className="header-avatar-image" src={avatar01} />
           </Link>
           <Link
             to={"/settings"}
-            style={{ color: "white", textDecoration: "none", fontSize: 16 }}
+            style={{
+              color: "white",
+              alignSelf: "flex-end"
+            }}
           >
-            Settings
+            <FontAwesomeIcon
+              icon={faCog}
+              className="header-icon-styles"
+            ></FontAwesomeIcon>
           </Link>
         </div>
       ) : (
