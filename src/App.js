@@ -17,7 +17,7 @@ import UserDashboard from "./components/UserDashboard/UserDashboard";
 import Achievements from "./components/Achievements/Achievements";
 import Schedule from "./components/Schedule/Schedule";
 import Settings from "./components/Settings/Settings";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -25,7 +25,8 @@ class App extends React.Component {
     super();
 
     this.state = {
-      menuModalVisible: false
+      menuModalVisible: false,
+      mailModalVisible: false
     };
   }
 
@@ -65,8 +66,8 @@ class App extends React.Component {
           <div
             className="header-wrap"
             style={{
-              display: "flex",
-              justifyContent: "space-between",
+              display: "grid",
+              gridTemplateColumns: "2fr 3fr 1fr",
               borderBottom: "3px solid gold"
             }}
           >
@@ -95,10 +96,58 @@ class App extends React.Component {
               </div>
             ) : null}
 
+            {this.state.mailModalVisible ? (
+              <div className="mail-modal-wrap">
+                <div
+                  className="mail-modal"
+                  style={{
+                    position: "fixed",
+                    top: "15vh",
+                    left: "5vw",
+                    height: "70vh",
+                    width: "90vw",
+                    border: "3px solid gold",
+                    zIndex: 10
+                  }}
+                >
+                  <p>Messages</p>
+                  <hr></hr>
+                  <p>None</p>
+                </div>
+              </div>
+            ) : null}
+
             <Header currentUser={this.props.currentUser} />
 
             <div
-              style={{ fontSize: "16px", color: "white", alignSelf: "center" }}
+              style={{
+                fontSize: "16px",
+                color: "white",
+                justifySelf: "flex-end",
+                alignSelf: "center"
+              }}
+              onClick={() =>
+                this.setState({
+                  mailModalVisible: !this.state.mailModalVisible
+                })
+              }
+            >
+              {this.props.currentUser ? (
+                <FontAwesomeIcon
+                  icon={faEnvelope}
+                  className="bars-icon-styles"
+                ></FontAwesomeIcon>
+              ) : (
+                ""
+              )}
+            </div>
+            <div
+              style={{
+                fontSize: "16px",
+                color: "white",
+                justifySelf: "flex-end",
+                alignSelf: "center"
+              }}
               onClick={() =>
                 this.setState({
                   menuModalVisible: !this.state.menuModalVisible

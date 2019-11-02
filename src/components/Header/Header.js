@@ -14,7 +14,7 @@ const Header = props => {
       className="header-main-div"
       style={{
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center"
       }}
     >

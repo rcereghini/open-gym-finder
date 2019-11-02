@@ -5,7 +5,8 @@ import Settings from "../Settings/Settings";
 import { firestore } from "../../firebase/firebase.utils";
 import "./userDashboard.css";
 import avatar01 from "../../assets/avatar01.png";
-import { isFlowBaseAnnotation } from "@babel/types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 class UserDashboard extends React.Component {
   constructor(props) {
@@ -70,10 +71,17 @@ class UserDashboard extends React.Component {
           <div className="user-stats">
             <img className="avatar-image" src={avatar01} />
             <div className="user-stats-details">
-              {this.props.currentUser.displayName}
-              <br></br>
-              Robert Cereghini<br></br>
-              {this.props.currentUser.email}
+              <div>
+                {this.props.currentUser.displayName}
+                <br></br>
+                Robert Cereghini<br></br>
+                {this.props.currentUser.email}
+                <br></br>
+              </div>
+              <FontAwesomeIcon
+                icon={faEdit}
+                className="edit-icon-styles"
+              ></FontAwesomeIcon>
             </div>
           </div>
         ) : null}

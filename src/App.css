@@ -76,3 +76,21 @@ button:hover {
   left: 0;
   top: 10vh;
 }
+.mail-modal {
+  background: linear-gradient(
+    0deg,
+    rgba(33, 37, 41, 1) 0%,
+    rgba(60, 60, 71, 1) 100%
+  );
+  border-radius: 5px;
+}
+
+.mail-modal-wrap {
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 80vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 10vh;
+}
