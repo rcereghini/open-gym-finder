@@ -25,7 +25,8 @@ class GymList extends React.Component {
       .then(function(querySnapshot) {
         const GYM_DATA = [];
         querySnapshot.forEach(doc => {
-          GYM_DATA.push(doc.data());
+          let data = { id: doc.ref.id, ...doc.data() };
+          GYM_DATA.push(data);
         });
 
         instance.setState({ gyms: GYM_DATA });
@@ -74,7 +75,11 @@ class GymList extends React.Component {
           {gyms.map((gym, i) => {
             let results = gym.coordinates.results[0];
             return (
-              <p className="gym-item" key={i + 1}>
+              <p
+                className="gym-item"
+                key={i + 1}
+                onClick={() => console.log("gym ==>", gym)}
+              >
                 {gym.gymName}
                 <br></br>
                 {results.address_components[3].long_name +
