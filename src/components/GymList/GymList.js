@@ -3,18 +3,19 @@ import React from "react";
 import { firestore } from "../../firebase/firebase.utils";
 import "./gymList.css";
 
-// let gyms = [1, 2, 3, 4, 5, 6, 7];
-
 class GymList extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       gyms: [],
       gymSearchFilter: ""
     };
 
+    console.log("this.props.currentUser ===>", this.props.currentUser);
+
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleGymItemClick = this.handleGymItemClick.bind(this);
   }
 
   componentDidMount() {
@@ -36,13 +37,24 @@ class GymList extends React.Component {
       });
   }
 
-  handleInputChange(event) {
-    const target = event.target;
+  handleGymItemClick(gym) {
+    firestore
+      .collection("users")
+      .doc(this.props.currentUser.id)
+      .set({
+        ...this.props.currentUser,
+        homeGym: {
+          name: gym.gymName,
+          id: gym.id
+        }
+      });
+    this.props.handleGymStateChange();
+  }
+
+  handleInputChange(e) {
+    const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
-
-    console.log("name ===>", name);
-    console.log("value ===>", value);
 
     this.setState({
       [name]: value
@@ -51,9 +63,12 @@ class GymList extends React.Component {
 
   render() {
     let gyms = this.state.gyms.filter(gym => {
+      // console.log("gym ===,", gym);
       return gym.gymName
-        .toLowerCase()
-        .startsWith(this.state.gymSearchFilter.toLowerCase());
+        ? gym.gymName
+            .toLowerCase()
+            .startsWith(this.state.gymSearchFilter.toLowerCase())
+        : false;
     });
 
     return (
@@ -78,7 +93,7 @@ class GymList extends React.Component {
               <p
                 className="gym-item"
                 key={i + 1}
-                onClick={() => console.log("gym ==>", gym)}
+                onClick={() => this.handleGymItemClick(gym)}
               >
                 {gym.gymName}
                 <br></br>

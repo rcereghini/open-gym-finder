@@ -28,6 +28,14 @@ select {
   margin-top: 0.7em;
 }
 
+.gym-info-box {
+  border: 2px solid gold;
+  border-radius: 5px;
+  padding: 0.7em;
+  margin-top: 0.7em;
+  width: 100%;
+}
+
 .avatar-image {
   height: 32vw;
 }

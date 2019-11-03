@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import MainMap from "./components/MainMap/MainMap";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
+import GymPage from "./components/GymPage/GymPage";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -212,6 +213,17 @@ class App extends React.Component {
             path="/settings"
             render={() =>
               this.props.currentUser ? <Settings /> : <Redirect to="/" />
+            }
+          />
+          <Route
+            exact
+            path="/user/gym"
+            render={() =>
+              this.props.currentUser ? (
+                <GymPage currentUser={this.props.currentUser} />
+              ) : (
+                <Redirect to="/" />
+              )
             }
           />
           <Route
