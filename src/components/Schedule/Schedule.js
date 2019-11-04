@@ -15,7 +15,7 @@ const Schedule = props => {
         ? currentUser.schedule.map((entry, i) => {
             return (
               <div key={i + 1}>
-                <p className="gym-item">
+                <div className="gym-item">
                   <span style={{ fontSize: "1.5em" }}>{entry}</span>
                   <br></br>
                   Monday, November 12th - 6:00PM<br></br>
@@ -35,7 +35,7 @@ const Schedule = props => {
                     </div>
                     <button>Cancel</button>
                   </div>
-                </p>
+                </div>
               </div>
             );
           })

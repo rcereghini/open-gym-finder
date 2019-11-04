@@ -10,14 +10,26 @@ import firebase from "firebase/app";
 class MarkerModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      rsvpButton: "RSVP"
+    };
 
     this.rsvpClickHandler = this.rsvpClickHandler.bind(this);
   }
 
+  componentDidMount() {
+    console.log("props ==>", this.props);
+    if (this.props.userId)
+      this.props.schedule.includes(this.props.gym.name)
+        ? this.setState({ rsvpButton: "Cancel" }, () => {
+            console.log("state set");
+          })
+        : console.log("false", this.props.schedule, this.props.gym.name);
+  }
+
   rsvpClickHandler = props => {
-    console.log("this.props", this.props);
-    let userRef = firestore.collection("users").doc(this.props.currentUser.id);
+    let userSchedule = this.props.schedule;
+    let userRef = firestore.collection("users").doc(this.props.userId);
 
     userRef.update({
       schedule: firebase.firestore.FieldValue.arrayUnion(this.props.gym.name)
@@ -51,7 +63,7 @@ class MarkerModal extends React.Component {
                 </p>
               </div>
               <button id="rsvpButton" onClick={this.rsvpClickHandler}>
-                RSVP
+                {this.state.rsvpButton}
               </button>
             </div>
           </div>

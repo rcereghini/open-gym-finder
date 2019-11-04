@@ -10,11 +10,10 @@ export class MainMap extends Component {
   constructor(props) {
     super(props);
 
-    console.log("propppsps===>", this.props.currentUser);
-
     this.state = {
       markers: [],
-      selectedMarker: {}
+      selectedMarker: {},
+      currentUser: this.props.currentUser
     };
   }
 
@@ -64,9 +63,9 @@ export class MainMap extends Component {
   }
 
   onMarkerClick = (props, marker, e) => {
-    console.log("props, marker, e", props, marker, e, this);
-    console.log();
-    console.log("this.selectedMarker ===>", this.state.selectedMarker);
+    console.log("props, marker, e", props, "marker", marker, e, this);
+    console.log("props marker click", this.props);
+
     !this.state.showingInfoWindow || marker.name != this.state.currentMarker
       ? this.setState({
           selectedMarker: this.state.markers[props.name - 1],
@@ -91,7 +90,7 @@ export class MainMap extends Component {
   };
 
   render() {
-    console.log("this.state.markers ===>", this.state.markers);
+    console.log("props in render", this.props);
     return (
       <div id="main" style={{ width: "100%" }}>
         <Map
@@ -112,14 +111,16 @@ export class MainMap extends Component {
                 onClick={this.onMarkerClick}
                 name={i + 1}
                 position={{
-                  lat: marker.coordinates.results[0].geometry.location.lat,
-                  lng: marker.coordinates.results[0].geometry.location.lng
+                  lat: marker.coordinates.results[0]
+                    ? marker.coordinates.results[0].geometry.location.lat
+                    : null,
+                  lng: marker.coordinates.results[0]
+                    ? marker.coordinates.results[0].geometry.location.lng
+                    : null
                 }}
               />
             ) : null;
           })}
-
-          {}
 
           <InfoWindowEx
             marker={this.state.activeMarker}
@@ -138,7 +139,14 @@ export class MainMap extends Component {
                   attendeeCount: 1337
                 }
               }}
-              currentUser={this.props.currentUser}
+              userId={this.props.userId}
+              schedule={this.props.schedule}
+              selectedMarker={this.state.selectedMarker}
+              // buttonState={
+              //   this.props.schedule.includes(this.props.gym.name)
+              //     ? "Cancel"
+              //     : "RSVP"
+              // }
             />
           </InfoWindowEx>
         </Map>

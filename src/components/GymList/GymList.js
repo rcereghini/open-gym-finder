@@ -97,9 +97,11 @@ class GymList extends React.Component {
               >
                 {gym.gymName}
                 <br></br>
-                {results.address_components[3].long_name +
-                  ", " +
-                  results.address_components[5].long_name}
+                {results
+                  ? results.address_components[3].long_name +
+                    ", " +
+                    results.address_components[5].long_name
+                  : null}
               </p>
             );
           })}

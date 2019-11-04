@@ -243,7 +243,10 @@ class App extends React.Component {
             path="/"
             render={() =>
               this.props.currentUser ? (
-                <MainMap currentUser={this.props.currentUser} />
+                <MainMap
+                  userId={this.props.currentUser.id}
+                  schedule={this.props.currentUser.schedule}
+                />
               ) : (
                 <SignIn />
               )
