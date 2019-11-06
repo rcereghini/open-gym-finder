@@ -1,0 +1,26 @@
+.edit-user-form {
+  /* width: 350px; */
+  color: white;
+  border: 1px solid gold;
+  padding: 1em;
+  border-radius: 5px;
+  width: 100vw !important;
+  margin-top: 3em;
+}
+
+.edit-user-form > label {
+  display: grid;
+  grid-template-columns: 145px 1fr;
+}
+
+.submit-button {
+  margin-top: 1em;
+}
+
+.submit-button-wrap {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid gold;
+  margin-top: 2.5em;
+  margin-bottom: 0em;
+}

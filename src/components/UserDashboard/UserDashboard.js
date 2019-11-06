@@ -8,6 +8,7 @@ import avatar01 from "../../assets/avatar01.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import EditUserForm from "../EditUserForm/EditUserForm";
 
 class UserDashboard extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class UserDashboard extends React.Component {
     this.state = {
       addNewGymVisible: false,
       addNewGymConfirm: false,
+      editUserFormVisible: false,
       findGymVisible: false,
       gymInfoVisible: this.props.currentUser.homeGym.id ? true : false
     };
@@ -44,6 +46,12 @@ class UserDashboard extends React.Component {
       [name]: value
     });
   }
+
+  // addNewGymVisible: false,
+  // addNewGymConfirm: false,
+  // editUserFormVisible: false,
+  // findGymVisible: false,
+  // gymInfoVisible: this.props.currentUser.homeGym.id ? true : false
 
   handleLeaveGym = () => {
     this.setState({
@@ -77,6 +85,21 @@ class UserDashboard extends React.Component {
     });
   };
 
+  toggleEditUserForm = () => {
+    this.setState(
+      this.state.editUserFormVisible
+        ? {
+            editUserFormVisible: false
+          }
+        : {
+            editUserFormVisible: true,
+            addNewGymConfirm: false,
+            addNewGymVisible: false,
+            findGymVisible: false
+          }
+    );
+  };
+
   addNewGymConfirm = () => {
     this.setState({
       addNewGymConfirm: !this.state.addNewGymConfirm
@@ -84,37 +107,45 @@ class UserDashboard extends React.Component {
   };
 
   render() {
-    const { displayName, email } = this.props;
+    const currentUser = this.props;
+    const { displayName, email } = this.props.currentUser;
+    const {
+      addNewGymVisible,
+      addNewGymConfirm,
+      findGymVisible,
+      editUserFormVisible,
+      gymInfoVisible
+    } = this.state;
 
     return (
       <div className="user-dashboard-main">
-        {!this.state.addNewGymVisible && !this.state.findGymVisible ? (
+        {!addNewGymVisible && !findGymVisible ? (
           <div className="user-stats">
             <img className="avatar-image" src={avatar01} />
             <div className="user-stats-details">
               <div>
-                {this.props.currentUser.displayName}
+                {displayName}
                 <br></br>
-                Robert Cereghini<br></br>
-                {this.props.currentUser.email}
+                {email}
                 <br></br>
               </div>
               <FontAwesomeIcon
                 icon={faEdit}
                 className="edit-icon-styles"
+                onClick={this.toggleEditUserForm}
               ></FontAwesomeIcon>
             </div>
           </div>
         ) : null}
-        {this.state.findGymVisible ? (
+        {findGymVisible ? (
           <GymList
-            currentUser={this.props.currentUser}
+            currentUser={currentUser}
             handleGymStateChange={() => {
               this.setState({ findGymVisible: false, gymInfoVisible: true });
             }}
           />
         ) : null}
-        {this.state.addNewGymVisible && !this.state.addNewGymConfirm ? (
+        {addNewGymVisible && !addNewGymConfirm ? (
           <div className="gym-add-confirm" style={{ height: "100%" }}>
             <h2>
               NOTICE: Your gym must be verified before listing open mats. This
@@ -123,15 +154,13 @@ class UserDashboard extends React.Component {
             <button onClick={this.addNewGymConfirm}>Continue</button>
           </div>
         ) : null}
-        {this.state.addNewGymVisible && this.state.addNewGymConfirm ? (
-          <AddGymForm />
-        ) : null}
+        {addNewGymVisible && addNewGymConfirm ? <AddGymForm /> : null}
 
-        {!this.state.gymInfoVisible ? (
+        {!gymInfoVisible && !editUserFormVisible ? (
           <div
             className="gym-set-add-wrap"
             style={
-              !this.state.addNewGymVisible && !this.state.findGymVisible
+              !addNewGymVisible && !findGymVisible
                 ? { height: "16vh" }
                 : { height: "8vh", marginBottom: ".7em" }
             }
@@ -140,31 +169,31 @@ class UserDashboard extends React.Component {
               className="gym-set-add-button"
               onClick={this.toggleFindGym}
               style={
-                !this.state.addNewGymVisible && !this.state.findGymVisible
+                !addNewGymVisible && !findGymVisible
                   ? { height: "16vh" }
                   : { height: "8vh", marginBottom: ".7em" }
               }
             >
-              {!this.state.findGymVisible ? "Set Home Gym" : "Back To Profile"}
+              {!findGymVisible ? "Set Home Gym" : "Back To Profile"}
             </div>
             <div
               className="gym-set-add-button"
               onClick={this.toggleAddNewGym}
               style={
-                !this.state.addNewGymVisible && !this.state.findGymVisible
+                !addNewGymVisible && !findGymVisible
                   ? { height: "16vh" }
                   : { height: "8vh", marginBottom: ".7em" }
               }
             >
-              {!this.state.addNewGymVisible ? "Add New Gym" : "Back To Profile"}
+              {!addNewGymVisible ? "Add New Gym" : "Back To Profile"}
             </div>
           </div>
         ) : null}
 
-        {this.state.gymInfoVisible && this.props.currentUser.homeGym.id ? (
+        {gymInfoVisible && currentUser.homeGym.id && !editUserFormVisible ? (
           <div className="gym-info-box">
             <p style={{ color: "white", fontSize: "14px" }}>
-              Member of {this.props.currentUser.homeGym.name}
+              Member of {currentUser.homeGym.name}
             </p>
             <div>
               <Link to={"/user/gym"}>
@@ -174,16 +203,20 @@ class UserDashboard extends React.Component {
           </div>
         ) : null}
 
-        {!this.state.addNewGymVisible && !this.state.findGymVisible ? (
+        {!addNewGymVisible && !findGymVisible && !editUserFormVisible ? (
           <div className="additional-stats-box">
             <h1 style={{ color: "white", fontSize: "14px" }}>
               Additional stats to go here.
             </h1>
           </div>
         ) : null}
-        {/* {!this.state.addNewGymVisible && !this.state.findGymVisible ? (
+        {/* {!addNewGymVisible && !findGymVisible ? (
           <Settings />
         ) : null} */}
+
+        {editUserFormVisible ? (
+          <EditUserForm currentUser={currentUser} />
+        ) : null}
       </div>
     );
   }
