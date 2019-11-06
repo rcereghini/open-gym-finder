@@ -5,9 +5,14 @@ import "./editUserForm.css";
 class EditUserForm extends React.Component {
   constructor(props) {
     super(props);
+
+    console.log("this.props.currentUser ===>", this.props.currentUser);
+
+    const { displayName, email } = this.props.currentUser.currentUser;
+
     this.state = {
-      displayName: "",
-      email: ""
+      displayName,
+      email
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,6 +31,17 @@ class EditUserForm extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault();
+    const { displayName, email } = this.state;
+    const { currentUser } = this.props.currentUser;
+    const packagedFields = { ...currentUser, displayName, email };
+    console.log("packagedFields ===>", packagedFields);
+
+    firestore
+      .collection("users")
+      .doc(currentUser.id)
+      .set({
+        ...packagedFields
+      });
 
     // const { phone, website, description, type, gymName } = this.state;
 

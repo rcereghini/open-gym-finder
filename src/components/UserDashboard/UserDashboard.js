@@ -108,6 +108,7 @@ class UserDashboard extends React.Component {
 
   render() {
     const currentUser = this.props;
+    console.log("dashbaord ===>", currentUser);
     const { displayName, email } = this.props.currentUser;
     const {
       addNewGymVisible,
@@ -215,7 +216,7 @@ class UserDashboard extends React.Component {
         ) : null} */}
 
         {editUserFormVisible ? (
-          <EditUserForm currentUser={currentUser} />
+          <EditUserForm currentUser={{ ...currentUser }} />
         ) : null}
       </div>
     );
