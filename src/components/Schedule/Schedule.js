@@ -2,13 +2,17 @@ import React from "react";
 import avatar01 from "../../assets/avatar01.png";
 import avatar02 from "../../assets/avatar02.png";
 import avatar03 from "../../assets/avatar03.png";
+import "./schedule.css";
 
 const Schedule = props => {
   const { currentUser } = props;
 
   // const removeItem
 
-  console.log("currentUser ===>", currentUser);
+  const removeItem = itemIndex => {
+    console.log("currentUser", currentUser, itemIndex);
+  };
+
   return (
     <div style={{ color: "white", fontSize: "2em", marginTop: ".3em" }}>
       {currentUser.schedule
@@ -19,21 +23,14 @@ const Schedule = props => {
                   <span style={{ fontSize: "1.5em" }}>{entry}</span>
                   <br></br>
                   Monday, November 12th - 6:00PM<br></br>
-                  <div
-                    className="avatars"
-                    style={{
-                      marginTop: "1.5em",
-                      display: "flex",
-                      justifyContent: "space-between"
-                    }}
-                  >
+                  <div className="avatars">
                     <div>
                       <img style={{ height: "30px" }} src={avatar01} />
                       <img style={{ height: "30px" }} src={avatar02} />
                       <img style={{ height: "30px" }} src={avatar03} />
                       +1337
                     </div>
-                    <button>Cancel</button>
+                    <button onClick={() => removeItem(i)}>Cancel</button>
                   </div>
                 </div>
               </div>
