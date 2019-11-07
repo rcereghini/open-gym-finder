@@ -195,7 +195,7 @@ class UserDashboard extends React.Component {
             </div>
           </div>
         ) : null}
-
+        {console.log("ugghhghghhg", currentUser)}
         {gymInfoVisible && currentUser.homeGym.id && !editUserFormVisible ? (
           <div className="gym-info-box">
             <p style={{ color: "white", fontSize: "14px" }}>
