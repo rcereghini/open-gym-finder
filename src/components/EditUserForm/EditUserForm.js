@@ -8,7 +8,7 @@ class EditUserForm extends React.Component {
 
     console.log("this.props.currentUser ===>", this.props.currentUser);
 
-    const { displayName, email } = this.props.currentUser.currentUser;
+    const { displayName, email } = this.props.currentUser;
 
     this.state = {
       displayName,
@@ -32,22 +32,15 @@ class EditUserForm extends React.Component {
   async handleSubmit(event) {
     event.preventDefault();
     const { displayName, email } = this.state;
-    const { currentUser } = this.props.currentUser;
+    const { currentUser } = this.props;
     const packagedFields = { ...currentUser, displayName, email };
-    console.log("packagedFields ===>", packagedFields);
 
     firestore
       .collection("users")
-      .doc(currentUser.id)
+      .doc(this.props.currentUser.id)
       .set({
         ...packagedFields
       });
-
-    // const { phone, website, description, type, gymName } = this.state;
-
-    // firestore
-    //   .collection("gym")
-    //   .add({ phone, website, type, gymName, description, coordinates });
   }
 
   render() {

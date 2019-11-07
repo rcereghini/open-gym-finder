@@ -18,8 +18,8 @@ class MarkerModal extends React.Component {
   }
 
   componentDidMount() {
-    console.log("props ==>", this.props);
-    if (this.props.userId)
+    console.log("props ==>", this.props.userId);
+    if (this.props.userId && this.props.schedule)
       this.props.schedule.includes(this.props.gym.name)
         ? this.setState({ rsvpButton: "Cancel" }, () => {
             console.log("state set");

@@ -13,12 +13,18 @@ import EditUserForm from "../EditUserForm/EditUserForm";
 class UserDashboard extends React.Component {
   constructor(props) {
     super(props);
+
+    let gymInfoVisibleStatus = false;
+
+    // if (this.props.currentUser.homeGym)
+    //   gymInfoVisibleStatus = this.props.currentUser.homeGym.id ? true : false;
+
     this.state = {
       addNewGymVisible: false,
       addNewGymConfirm: false,
       editUserFormVisible: false,
       findGymVisible: false,
-      gymInfoVisible: this.props.currentUser.homeGym.id ? true : false
+      gymInfoVisible: gymInfoVisibleStatus
     };
 
     console.log("test ===>", this.props.currentUser);
@@ -107,8 +113,7 @@ class UserDashboard extends React.Component {
   };
 
   render() {
-    const currentUser = this.props;
-    console.log("dashbaord ===>", currentUser);
+    const { currentUser } = this.props;
     const { displayName, email } = this.props.currentUser;
     const {
       addNewGymVisible,
@@ -140,7 +145,7 @@ class UserDashboard extends React.Component {
         ) : null}
         {findGymVisible ? (
           <GymList
-            currentUser={currentUser}
+            currentUser={this.props.currentUser}
             handleGymStateChange={() => {
               this.setState({ findGymVisible: false, gymInfoVisible: true });
             }}
@@ -216,7 +221,7 @@ class UserDashboard extends React.Component {
         ) : null} */}
 
         {editUserFormVisible ? (
-          <EditUserForm currentUser={{ ...currentUser }} />
+          <EditUserForm currentUser={this.props.currentUser} />
         ) : null}
       </div>
     );

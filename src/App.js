@@ -231,7 +231,11 @@ class App extends React.Component {
             path="/roam"
             render={() =>
               this.props.currentUser ? (
-                <MainMap currentUser={this.props.currentUser} />
+                <MainMap
+                  currentUser={this.props.currentUser}
+                  userId={this.props.currentUser.id}
+                  schedule={this.props.currentUser.schedule}
+                />
               ) : (
                 <Redirect to="/" />
               )
@@ -244,6 +248,7 @@ class App extends React.Component {
             render={() =>
               this.props.currentUser ? (
                 <MainMap
+                  currentUser={this.props.currentUser}
                   userId={this.props.currentUser.id}
                   schedule={this.props.currentUser.schedule}
                 />

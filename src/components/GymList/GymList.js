@@ -38,6 +38,8 @@ class GymList extends React.Component {
   }
 
   handleGymItemClick(gym) {
+    console.log("TEST =+===>", this.props.currentUser);
+
     firestore
       .collection("users")
       .doc(this.props.currentUser.id)
