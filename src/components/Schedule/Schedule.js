@@ -1,6 +1,7 @@
 import React from "react";
 
 import { firestore } from "../../firebase/firebase.utils";
+import UserCalendar from "../UserCalendar/UserCalendar";
 
 import avatar01 from "../../assets/avatar01.png";
 import avatar02 from "../../assets/avatar02.png";
@@ -47,6 +48,7 @@ const Schedule = props => {
             );
           })
         : null}
+      <UserCalendar></UserCalendar>
     </div>
   );
 };
