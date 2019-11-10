@@ -1,4 +1,7 @@
 import React from "react";
+
+import { firestore } from "../../firebase/firebase.utils";
+
 import avatar01 from "../../assets/avatar01.png";
 import avatar02 from "../../assets/avatar02.png";
 import avatar03 from "../../assets/avatar03.png";
@@ -10,7 +13,14 @@ const Schedule = props => {
   // const removeItem
 
   const removeItem = itemIndex => {
-    console.log("currentUser", currentUser, itemIndex);
+    let newCurrentUser = { ...currentUser };
+    newCurrentUser.schedule.splice(itemIndex, 1);
+    firestore
+      .collection("users")
+      .doc(currentUser.id)
+      .set({
+        ...newCurrentUser
+      });
   };
 
   return (
