@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { firestore } from "../../firebase/firebase.utils";
 import UserCalendar from "../UserCalendar/UserCalendar";
@@ -10,8 +10,7 @@ import "./schedule.css";
 
 const Schedule = props => {
   const { currentUser } = props;
-
-  // const removeItem
+  const [eventView, setEventView] = useState("list");
 
   const removeItem = itemIndex => {
     let newCurrentUser = { ...currentUser };
@@ -26,7 +25,11 @@ const Schedule = props => {
 
   return (
     <div style={{ color: "white", fontSize: "2em", marginTop: ".3em" }}>
-      {currentUser.schedule
+      <div style={{ marginBottom: ".3em" }}>
+        <button onClick={() => setEventView("list")}>List</button>
+        <button onClick={() => setEventView("calendar")}>Calendar</button>
+      </div>
+      {currentUser.schedule && eventView === "list"
         ? currentUser.schedule.map((entry, i) => {
             return (
               <div key={i + 1}>
@@ -48,7 +51,7 @@ const Schedule = props => {
             );
           })
         : null}
-      <UserCalendar></UserCalendar>
+      {eventView === "calendar" ? <UserCalendar></UserCalendar> : null}
     </div>
   );
 };

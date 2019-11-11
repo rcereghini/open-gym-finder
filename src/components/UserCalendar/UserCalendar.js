@@ -9,7 +9,8 @@ let myEventsList = [
     title: "banana",
     start: moment(),
     end: moment(),
-    allDay: true
+    allDay: true,
+    banana: "pajamas"
     // resource?: any,
   }
 ];
@@ -22,7 +23,9 @@ const UserCalendar = props => (
       startAccessor="start"
       endAccessor="end"
       style={{ height: 500 }}
-      views={["month"]}
+      views={["month", "agenda"]}
+      onDrillDown={e => console.log("onDrillDown", e)}
+      onSelectEvent={e => console.log("onSelectEvent", e)}
     />
   </div>
 );
