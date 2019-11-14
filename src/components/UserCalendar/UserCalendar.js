@@ -4,6 +4,7 @@ import moment from "moment";
 import "../../assets/calendar/calendar.css";
 
 const localizer = momentLocalizer(moment);
+
 let myEventsList = [
   {
     title: "banana",
@@ -15,19 +16,21 @@ let myEventsList = [
   }
 ];
 
-const UserCalendar = props => (
-  <div style={{ fontSize: ".5em", marginTop: "2em" }}>
-    <Calendar
-      localizer={localizer}
-      events={myEventsList}
-      startAccessor="start"
-      endAccessor="end"
-      style={{ height: 500 }}
-      views={["month"]}
-      onDrillDown={e => console.log("onDrillDown", e)}
-      onSelectEvent={e => console.log("onSelectEvent", e)}
-    />
-  </div>
-);
+const UserCalendar = props => {
+  return (
+    <div style={{ fontSize: ".5em", marginTop: "2em" }}>
+      <Calendar
+        localizer={localizer}
+        events={myEventsList}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 500 }}
+        views={["month"]}
+        onDrillDown={e => console.log("onDrillDown", e)}
+        onSelectEvent={e => console.log("onSelectEvent", e)}
+      />
+    </div>
+  );
+};
 
 export default UserCalendar;

@@ -1,16 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { firestore } from "../../firebase/firebase.utils";
 import UserCalendar from "../UserCalendar/UserCalendar";
+import AddEventForm from "../AddEventForm/AddEventForm";
+import EventCard from "../EventCard/EventCard";
 
-import avatar01 from "../../assets/avatar01.png";
-import avatar02 from "../../assets/avatar02.png";
-import avatar03 from "../../assets/avatar03.png";
 import "./schedule.css";
 
 const Schedule = props => {
   const { currentUser } = props;
   const [eventView, setEventView] = useState("list");
+  const [schedule, setSchedule] = useState([]);
+
+  // useEffect(() => {
+  // .where("capital", "==", true)
+
+  let events = [];
+  firestore
+    .collection("event")
+    .get()
+    .then(function(querySnapshot) {
+      // console.log(querySnapshot);
+    })
+    .then(() => {
+      setSchedule(events);
+    })
+    .catch(function(error) {
+      console.log("Error getting documents: ", error);
+    });
+  // });
+
+  let testEvent = {};
+  //may need to do before mount
 
   const removeItem = itemIndex => {
     let newCurrentUser = { ...currentUser };
@@ -32,26 +53,21 @@ const Schedule = props => {
       {currentUser.schedule && eventView === "list"
         ? currentUser.schedule.map((entry, i) => {
             return (
-              <div key={i + 1}>
-                <div className="gym-item">
-                  <span style={{ fontSize: "1.5em" }}>{entry}</span>
-                  <br></br>
-                  Monday, November 12th - 6:00PM<br></br>
-                  <div className="avatars">
-                    <div>
-                      <img style={{ height: "30px" }} src={avatar01} />
-                      <img style={{ height: "30px" }} src={avatar02} />
-                      <img style={{ height: "30px" }} src={avatar03} />
-                      +1337
-                    </div>
-                    <button onClick={() => removeItem(i)}>Cancel</button>
-                  </div>
-                </div>
-              </div>
+              <EventCard
+                entry={entry}
+                testEvent={testEvent}
+                key={i + 1}
+              ></EventCard>
             );
           })
         : null}
-      {eventView === "calendar" ? <UserCalendar></UserCalendar> : null}
+      {eventView === "calendar" ? (
+        <UserCalendar currentUser={currentUser}></UserCalendar>
+      ) : null}
+      <AddEventForm
+        gymId={currentUser.homeGym.id}
+        userId={currentUser.id}
+      ></AddEventForm>
     </div>
   );
 };
