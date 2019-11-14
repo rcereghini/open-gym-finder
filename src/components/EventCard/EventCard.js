@@ -6,7 +6,7 @@ import avatar02 from "../../assets/avatar02.png";
 import avatar03 from "../../assets/avatar03.png";
 
 const EventCard = props => {
-  // console.log("props ++==>", props);
+  console.log("props ++==>", props);
   return (
     <div>
       <div className="gym-item">

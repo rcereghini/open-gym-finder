@@ -23,6 +23,7 @@ const Schedule = props => {
       // console.log(querySnapshot);
     })
     .then(() => {
+      console.log("events ===>", events);
       setSchedule(events);
     })
     .catch(function(error) {
@@ -49,6 +50,12 @@ const Schedule = props => {
       <div style={{ marginBottom: ".3em" }}>
         <button onClick={() => setEventView("list")}>List</button>
         <button onClick={() => setEventView("calendar")}>Calendar</button>
+        <button
+          style={{ marginLeft: "3em" }}
+          onClick={() => setEventView("addEventForm")}
+        >
+          Add
+        </button>
       </div>
       {currentUser.schedule && eventView === "list"
         ? currentUser.schedule.map((entry, i) => {
@@ -64,10 +71,13 @@ const Schedule = props => {
       {eventView === "calendar" ? (
         <UserCalendar currentUser={currentUser}></UserCalendar>
       ) : null}
-      <AddEventForm
-        gymId={currentUser.homeGym.id}
-        userId={currentUser.id}
-      ></AddEventForm>
+
+      {eventView === "addEventForm" ? (
+        <AddEventForm
+          gymId={currentUser.homeGym.id}
+          userId={currentUser.id}
+        ></AddEventForm>
+      ) : null}
     </div>
   );
 };
