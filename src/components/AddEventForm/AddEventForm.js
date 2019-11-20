@@ -8,10 +8,10 @@ class AddEventForm extends React.Component {
     super(props);
 
     this.state = {
-      title: null,
-      startTime: null,
-      endTime: null,
-      description: null,
+      title: "",
+      startTime: "",
+      endTime: "",
+      description: "",
       gymId: props.gymId,
       createdBy: props.userId
     };

@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./eventCard.css";
+
+import { firestore } from "../../firebase/firebase.utils";
 
 import avatar01 from "../../assets/avatar01.png";
 import avatar02 from "../../assets/avatar02.png";
 import avatar03 from "../../assets/avatar03.png";
 
 const EventCard = props => {
-  console.log("props ++==>", props);
+  // useEffect(() => {
+  //   console.log("props ===>  ....", props);
+  // });
+
   return (
     <div>
       <div className="gym-item">
-        <span style={{ fontSize: "1.5em" }}>ENTRY</span>
+        <span style={{ fontSize: "1.5em" }}>{props.title}</span>
         <br></br>
-        Monday, November 12th - 6:00PM<br></br>
+        {props.startTime} - {props.endTime}
+        <br></br>
         <div className="avatars">
           <div>
             <img style={{ height: "30px" }} src={avatar01} />

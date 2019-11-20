@@ -12,27 +12,21 @@ const Schedule = props => {
   const [eventView, setEventView] = useState("list");
   const [schedule, setSchedule] = useState([]);
 
-  // useEffect(() => {
-  // .where("capital", "==", true)
+  useEffect(() => {
+    let { schedule } = props.currentUser;
 
-  let events = [];
-  firestore
-    .collection("event")
-    .get()
-    .then(function(querySnapshot) {
-      // console.log(querySnapshot);
-    })
-    .then(() => {
-      console.log("events ===>", events);
-      setSchedule(events);
-    })
-    .catch(function(error) {
-      console.log("Error getting documents: ", error);
-    });
-  // });
-
-  let testEvent = {};
-  //may need to do before mount
+    firestore
+      .collection("event")
+      .where("id", "in", schedule)
+      .get()
+      .then(res => {
+        let unpackedEvents = [];
+        res.forEach(event => {
+          unpackedEvents.push(event.data());
+        });
+        setSchedule(unpackedEvents);
+      });
+  });
 
   const removeItem = itemIndex => {
     let newCurrentUser = { ...currentUser };
@@ -58,18 +52,24 @@ const Schedule = props => {
         </button>
       </div>
       {currentUser.schedule && eventView === "list"
-        ? currentUser.schedule.map((entry, i) => {
+        ? schedule.map((entry, i) => {
+            // console.log("entry +++>", entry);
+            let { id, description, title, startTime, endTime, gymId } = entry;
             return (
               <EventCard
-                entry={entry}
-                testEvent={testEvent}
+                entryId={id}
+                description={description}
+                title={title}
+                startTime={startTime}
+                endTime={endTime}
+                gymId={gymId}
                 key={i + 1}
               ></EventCard>
             );
           })
         : null}
       {eventView === "calendar" ? (
-        <UserCalendar currentUser={currentUser}></UserCalendar>
+        <UserCalendar schedule={schedule}></UserCalendar>
       ) : null}
 
       {eventView === "addEventForm" ? (
