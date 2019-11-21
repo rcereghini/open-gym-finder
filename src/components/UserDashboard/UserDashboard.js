@@ -15,8 +15,8 @@ class UserDashboard extends React.Component {
 
     let gymInfoVisibleStatus = false;
 
-    // if (this.props.currentUser.homeGym)
-    //   gymInfoVisibleStatus = this.props.currentUser.homeGym.id ? true : false;
+    if (this.props.currentUser.homeGym)
+      gymInfoVisibleStatus = this.props.currentUser.homeGym.id ? true : false;
 
     this.state = {
       addNewGymVisible: false,
@@ -32,7 +32,12 @@ class UserDashboard extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {}
+
   componentDidUpdate() {
+    // let gymInfoVisibleStatus;
+    // if (this.props.currentUser.homeGym)
+    //   gymInfoVisibleStatus = this.props.currentUser.homeGym.id ? true : false;
     // console.log("hi", this.props.currentuser.homeGym.id);
     // console.log("hi2", this.state.gymInfoVisible);
     // if (this.props.currentUser.homeGym.id && !this.state.gymInfoVisible) {

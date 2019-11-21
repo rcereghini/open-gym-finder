@@ -5,6 +5,7 @@ import InfoWindowEx from "./InfoWindowEx/InfoWindowEx";
 import { firestore } from "../../firebase/firebase.utils";
 
 import "./mainMap.css";
+import { thisExpression } from "@babel/types";
 
 export class MainMap extends Component {
   constructor(props) {
@@ -38,8 +39,13 @@ export class MainMap extends Component {
   }
 
   onMarkerClick = (props, marker, e) => {
-    console.log("props, marker, e", props, "marker", marker, e, this);
-    console.log("props marker click", this.props);
+    // console.log("props, marker, e", props, "marker", marker, e, this);
+    // console.log("props marker click", this.props);
+
+    console.log(
+      "ON MARKER CLICK SHOULD FIRE OFF THE REQUEST FOR THE EVENT DETAILS TO REDUCE FIRESTORE READS"
+    );
+    console.log("GYM JOIN IS NOW BROKEN TOO. gQuit seems to fire regardless.");
 
     !this.state.showingInfoWindow || marker.name != this.state.currentMarker
       ? this.setState({
@@ -85,6 +91,7 @@ export class MainMap extends Component {
                 key={i + 1}
                 onClick={this.onMarkerClick}
                 name={i + 1}
+                eventIds={marker.eventIds}
                 position={{
                   lat: marker.coordinates.results[0]
                     ? marker.coordinates.results[0].geometry.location.lat
@@ -114,6 +121,7 @@ export class MainMap extends Component {
                   attendeeCount: 1337
                 }
               }}
+              eventIds={this.state.selectedMarker.eventIds}
               userId={this.props.userId}
               schedule={this.props.schedule}
               selectedMarker={this.state.selectedMarker}
