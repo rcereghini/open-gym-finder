@@ -1,7 +1,6 @@
 import React from "react";
 import AddGymForm from "../AddGymForm/AddGymForm";
 import GymList from "../GymList/GymList";
-import Settings from "../Settings/Settings";
 import { firestore } from "../../firebase/firebase.utils";
 import "./userDashboard.css";
 import avatar01 from "../../assets/avatar01.png";
@@ -127,7 +126,7 @@ class UserDashboard extends React.Component {
       <div className="user-dashboard-main">
         {!addNewGymVisible && !findGymVisible ? (
           <div className="user-stats">
-            <img className="avatar-image" src={avatar01} />
+            <img className="avatar-image" src={avatar01} alt={""} />
             <div className="user-stats-details">
               <div>
                 {displayName}

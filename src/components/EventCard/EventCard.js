@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./eventCard.css";
-
-import { firestore } from "../../firebase/firebase.utils";
 
 import avatar01 from "../../assets/avatar01.png";
 import avatar02 from "../../assets/avatar02.png";
@@ -21,9 +19,9 @@ const EventCard = props => {
         <br></br>
         <div className="avatars">
           <div>
-            <img style={{ height: "30px" }} src={avatar01} />
-            <img style={{ height: "30px" }} src={avatar02} />
-            <img style={{ height: "30px" }} src={avatar03} />
+            <img style={{ height: "30px" }} src={avatar01} alt={""} />
+            <img style={{ height: "30px" }} src={avatar02} alt={""} />
+            <img style={{ height: "30px" }} src={avatar03} alt={""} />
             +1337
           </div>
           <button onClick={() => console.log("cancel")}>Cancel</button>

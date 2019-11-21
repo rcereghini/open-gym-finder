@@ -35,31 +35,6 @@ export class MainMap extends Component {
       .catch(err => {
         console.log("Error getting documents", err);
       });
-
-    let address = {
-      address1: "6407 s mcallister",
-      address2: "ave",
-      city: "tempe",
-      state: "az",
-      zip: "85283"
-    };
-
-    // firestore
-    //   .collection("gym")
-    //   .doc()
-    //   .set({
-    //     name: "Gym of Bob",
-    //     description: "A really great place.",
-    //     challengeRemainingCount: 3,
-    //     nextOpenMat: {
-    //       time: "Monday, June 15th, 5:30PM",
-    //       attendeeCount: 1337
-    //     },
-    //     location: {
-    //       lat: 33.40371,
-    //       lng: 111.97223
-    //     }
-    //   });
   }
 
   onMarkerClick = (props, marker, e) => {

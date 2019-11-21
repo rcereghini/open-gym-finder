@@ -12,7 +12,6 @@ import { setCurrentUser } from "./redux/user/user.actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import BottomNavigation from "./components/BottomNavigation/BottomNavigation";
-import logo from "./logo.svg";
 import "./App.css";
 import UserDashboard from "./components/UserDashboard/UserDashboard";
 import Achievements from "./components/Achievements/Achievements";
@@ -280,7 +279,4 @@ const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

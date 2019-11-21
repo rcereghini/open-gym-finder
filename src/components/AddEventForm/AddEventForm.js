@@ -33,8 +33,6 @@ class AddEventForm extends React.Component {
   async handleSubmit(event) {
     event.preventDefault();
 
-    let eventDetails = { ...this.state };
-
     // let coordinates = await getAddressCoordinates(address).then(response => {
     //   return response;
     // });

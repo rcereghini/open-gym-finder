@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "../../assets/calendar/calendar.css";
@@ -9,9 +9,8 @@ const UserCalendar = props => {
   let events = [];
   props.schedule.forEach((item, i) => {
     let startDate = new Date(item.startTime);
-    let startTime = moment(startDate);
     let endDate = new Date(item.endTime);
-    let endTime = moment(endDate);
+
     events.push({
       id: i,
       title: item.title,

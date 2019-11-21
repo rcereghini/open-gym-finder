@@ -28,7 +28,6 @@ class MarkerModal extends React.Component {
   }
 
   rsvpClickHandler = props => {
-    let userSchedule = this.props.schedule;
     let userRef = firestore.collection("users").doc(this.props.userId);
 
     userRef.update({
@@ -54,9 +53,9 @@ class MarkerModal extends React.Component {
             <div className="rsvp-details">
               <div className="rsvp-attendees">
                 <div className="avatars">
-                  <img style={{ height: "30px" }} src={avatar01} />
-                  <img style={{ height: "30px" }} src={avatar02} />
-                  <img style={{ height: "30px" }} src={avatar03} />
+                  <img style={{ height: "30px" }} src={avatar01} alt={""} />
+                  <img style={{ height: "30px" }} src={avatar02} alt={""} />
+                  <img style={{ height: "30px" }} src={avatar03} alt={""} />
                 </div>
                 <p className="attendee-count">
                   +{this.props.gym.nextOpenMat.attendeeCount}

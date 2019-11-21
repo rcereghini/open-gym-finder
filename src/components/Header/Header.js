@@ -1,12 +1,9 @@
 import React from "react";
-import BackButton from "../BackButton/BackButton";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import avatar01 from "../../assets/avatar01.png";
 import "./header.css";
-
-const navigation = ["Map", "History", "Settings"];
 
 const Header = props => {
   return (
@@ -37,9 +34,14 @@ const Header = props => {
               // marginRight: "1.5em"
             }}
           >
-            <img className="header-avatar-image" src={avatar01} />
+            <img
+              className="header-avatar-image"
+              src={avatar01}
+              alt={"To Profile"}
+            />
           </Link>
           <Link
+            alt={"Settings"}
             to={"/settings"}
             style={{
               color: "white",
