@@ -35,7 +35,11 @@ class SignIn extends React.Component {
       await auth.signInWithEmailAndPassword(email, password);
       this.setState({ email: "", password: "" });
     } catch (error) {
-      console.error(error);
+      //temp handling of error
+      alert(
+        error.message +
+          " If account was created via Sign In With Google, please use that login method."
+      );
     }
 
     this.setState({ email: "", password: "" });
