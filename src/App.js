@@ -30,7 +30,7 @@ class App extends React.Component {
 		};
 
 		alert(
-			"Please view this application on mobile display using dev tools, as this is being developed with a mobile first approach."
+			"Please view this application on mobile display using dev tools, as this is being developed with a mobile first approach. Styling is a work in progress."
 		);
 	}
 
