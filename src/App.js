@@ -29,7 +29,9 @@ class App extends React.Component {
 			mailModalVisible: false,
 		};
 
-		alert("Please view this application on mobile, as this is being developed with a mobile first approach.");
+		alert(
+			"Please view this application on mobile display using dev tools, as this is being developed with a mobile first approach."
+		);
 	}
 
 	componentDidMount() {
