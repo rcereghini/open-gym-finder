@@ -1,0 +1,38 @@
+.modal-outer {
+  position: fixed;
+  z-index: 101;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-inner {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 0em 1em;
+  border-radius: 5px;
+  color: black;
+  margin: 1em;
+}
+
+.close-icon {
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 0.3em;
+  height: 35px;
+  width: 35px;
+  margin-top: 0.5em;
+  align-self: flex-end;
+}
+
+.modal-inner > p {
+  color: black;
+}

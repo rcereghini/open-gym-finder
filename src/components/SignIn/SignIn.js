@@ -3,13 +3,16 @@ import "./signIn.css";
 
 import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
 import { Link } from "react-router-dom";
+import Modal from "../Modal/Modal";
 
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      alertText: "",
+      modalActive: false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -35,11 +38,12 @@ class SignIn extends React.Component {
       await auth.signInWithEmailAndPassword(email, password);
       this.setState({ email: "", password: "" });
     } catch (error) {
-      //temp handling of error
-      alert(
-        error.message +
-          " If account was created via Sign In With Google, please use that login method."
-      );
+      this.setState({
+        alertText:
+          error.message +
+          " If account was created via Sign In With Google, please use that login method.",
+        modalActive: true
+      });
     }
 
     this.setState({ email: "", password: "" });
@@ -88,6 +92,12 @@ class SignIn extends React.Component {
             New to this? Get Started Now!
           </Link>
         </form>
+        {this.state.modalActive ? (
+          <Modal
+            innerText={this.state.alertText}
+            setInactive={() => this.setState({ modalActive: false })}
+          ></Modal>
+        ) : null}
       </div>
     );
   }
