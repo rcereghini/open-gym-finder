@@ -12,7 +12,7 @@ class SignIn extends React.Component {
       email: "",
       password: "",
       alertText: "",
-      modalActive: false
+      isModalActive: false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -42,7 +42,7 @@ class SignIn extends React.Component {
         alertText:
           error.message +
           " If account was created via Sign In With Google, please use that login method.",
-        modalActive: true
+        isModalActive: true
       });
     }
 
@@ -92,10 +92,10 @@ class SignIn extends React.Component {
             New to this? Get Started Now!
           </Link>
         </form>
-        {this.state.modalActive ? (
+        {this.state.isModalActive ? (
           <Modal
             innerText={this.state.alertText}
-            setInactive={() => this.setState({ modalActive: false })}
+            setInactive={() => this.setState({ isModalActive: false })}
           ></Modal>
         ) : null}
       </div>

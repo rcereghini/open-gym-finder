@@ -1,4 +1,5 @@
 import React from "react";
+import Modal from "../Modal/Modal";
 import { Link } from "react-router-dom";
 import {
   auth,
@@ -16,7 +17,9 @@ class SignUp extends React.Component {
       lastName: "",
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      alertText: "",
+      isModalActive: false
     };
   }
 
@@ -47,8 +50,12 @@ class SignUp extends React.Component {
         confirmPassword: ""
       });
     } catch (error) {
-      console.error(error);
-      alert(error.message);
+      this.setState({
+        alertText:
+          error.message +
+          " If account was created via Sign In With Google, please use that login method.",
+        isModalActive: true
+      });
     }
   };
 
@@ -156,6 +163,12 @@ class SignUp extends React.Component {
             </button>
           </div>
         </form>
+        {this.state.isModalActive ? (
+          <Modal
+            innerText={this.state.alertText}
+            setInactive={() => this.setState({ isModalActive: false })}
+          ></Modal>
+        ) : null}
       </div>
     );
   }
