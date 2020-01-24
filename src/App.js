@@ -7,6 +7,7 @@ import MainMap from "./components/MainMap/MainMap";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import GymPage from "./components/GymPage/GymPage";
+import Modal from "./components/Modal/Modal";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,12 +27,11 @@ class App extends React.Component {
 
     this.state = {
       menuModalVisible: false,
-      mailModalVisible: false
+      mailModalVisible: false,
+      isModalActive: true,
+      alertText:
+        "Please view this application on mobile display using dev tools, as this is being developed with a mobile first approach. Styling is a work in progress."
     };
-
-    alert(
-      "Please view this application on mobile display using dev tools, as this is being developed with a mobile first approach. Styling is a work in progress."
-    );
   }
 
   componentDidMount() {
@@ -271,6 +271,12 @@ class App extends React.Component {
         </Switch>
         {/* <MainMap />  */}
         {this.props.currentUser ? <BottomNavigation /> : null}
+        {this.state.isModalActive ? (
+          <Modal
+            innerText={this.state.alertText}
+            setInactive={() => this.setState({ isModalActive: false })}
+          ></Modal>
+        ) : null}
       </div>
     );
   }

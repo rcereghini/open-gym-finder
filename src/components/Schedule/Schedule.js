@@ -2,6 +2,7 @@ import React from "react";
 
 import { firestore } from "../../firebase/firebase.utils";
 import UserCalendar from "../UserCalendar/UserCalendar";
+import Modal from "../Modal/Modal";
 import AddEventForm from "../AddEventForm/AddEventForm";
 import EventCard from "../EventCard/EventCard";
 
@@ -12,7 +13,9 @@ class Schedule extends React.Component {
     super(props);
     this.state = {
       schedule: [],
-      eventView: "list"
+      eventView: "list",
+      isModalActive: false,
+      alertText: "You must be a member of a gym to create an event."
     };
 
     this.removeItem = this.removeItem.bind(this);
@@ -64,10 +67,8 @@ class Schedule extends React.Component {
           <button
             style={{ marginLeft: "3em" }}
             onClick={() => {
-              if (!this.props.currentUser.homeGym) {
-                alert(
-                  "TEMP ALERT HANDLING: You must be a member of a gym to add an event!"
-                );
+              if (!this.props.currentUser.homeGym.id) {
+                this.setState({ isModalActive: true });
                 return;
               }
               this.setState({ eventView: "addEventForm" });
@@ -101,6 +102,13 @@ class Schedule extends React.Component {
             gymId={this.props.currentUser.homeGym.id}
             userId={this.props.currentUser.id ? this.props.currentUser.id : ""}
           ></AddEventForm>
+        ) : null}
+
+        {this.state.isModalActive ? (
+          <Modal
+            innerText={this.state.alertText}
+            setInactive={() => this.setState({ isModalActive: false })}
+          ></Modal>
         ) : null}
       </div>
     );
