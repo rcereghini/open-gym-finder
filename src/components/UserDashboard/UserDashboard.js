@@ -32,9 +32,35 @@ class UserDashboard extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log("mount");
+    let gymInfoVisibleStatus = false;
+
+    console.log("pre check ==>", this.props.currentUser.homeGym.id);
+
+    if (this.props.currentUser.homeGym.id)
+      gymInfoVisibleStatus =
+        this.props.currentUser.homeGym.id !== "" &&
+        this.props.currentUser.homeGym.id
+          ? true
+          : false;
+
+    console.log("gymInfoVisibleStatus ===>", gymInfoVisibleStatus);
+
+    setTimeout(() => {
+      this.setState({
+        addNewGymVisible: false,
+        addNewGymConfirm: false,
+        editUserFormVisible: false,
+        findGymVisible: false,
+        gymInfoVisible: gymInfoVisibleStatus
+      });
+    });
+  }
 
   componentDidUpdate() {
+    console.log("hi");
+
     // let gymInfoVisibleStatus;
     // if (this.props.currentUser.homeGym)
     //   gymInfoVisibleStatus = this.props.currentUser.homeGym.id ? true : false;
@@ -65,9 +91,9 @@ class UserDashboard extends React.Component {
 
   handleLeaveGym = () => {
     this.setState({
-      findGymVisible: false,
+      findGymVisible: true,
       gymInfoVisible: false,
-      addNewGymVisible: false,
+      addNewGymVisible: true,
       addNewGymConfirm: false
     });
   };
