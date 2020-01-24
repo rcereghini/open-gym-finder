@@ -59,8 +59,6 @@ class UserDashboard extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log("hi");
-
     // let gymInfoVisibleStatus;
     // if (this.props.currentUser.homeGym)
     //   gymInfoVisibleStatus = this.props.currentUser.homeGym.id ? true : false;
@@ -225,20 +223,17 @@ class UserDashboard extends React.Component {
             </div>
           </div>
         ) : null}
-        {console.log("ugghhghghhg", currentUser)}
-        {currentUser.homeGym ? (
-          gymInfoVisible && currentUser.homeGym.id && !editUserFormVisible ? (
-            <div className="gym-info-box">
-              <p style={{ color: "white", fontSize: "14px" }}>
-                Member of {currentUser.homeGym.name}
-              </p>
-              <div>
-                <Link to={"/user/gym"}>
-                  <button style={{ margin: ".7em" }}>Gym Page</button>
-                </Link>
-              </div>
+        {gymInfoVisible && currentUser.homeGym.id && !editUserFormVisible ? (
+          <div className="gym-info-box">
+            <p style={{ color: "white", fontSize: "14px" }}>
+              Member of {currentUser.homeGym.name}
+            </p>
+            <div>
+              <Link to={"/user/gym"}>
+                <button style={{ margin: ".7em" }}>Gym Page</button>
+              </Link>
             </div>
-          ) : null
+          </div>
         ) : null}
 
         {!addNewGymVisible && !findGymVisible && !editUserFormVisible ? (
@@ -248,9 +243,6 @@ class UserDashboard extends React.Component {
             </h1>
           </div>
         ) : null}
-        {/* {!addNewGymVisible && !findGymVisible ? (
-          <Settings />
-        ) : null} */}
 
         {editUserFormVisible ? (
           <EditUserForm currentUser={this.props.currentUser} />
