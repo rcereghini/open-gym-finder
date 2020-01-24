@@ -11,7 +11,7 @@ class MarkerModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rsvpButtonDisabled: true,
+      rsvpButtonDisabled: false,
       eventInfo: {}
     };
 

@@ -21,21 +21,22 @@ class Schedule extends React.Component {
   componentDidMount() {
     const querySchedule = this.props.currentUser.schedule;
 
-    firestore
-      .collection("event")
-      .where("id", "in", querySchedule)
-      .get()
-      .then(res => {
-        let unpackedEvents = [];
+    if (querySchedule)
+      firestore
+        .collection("event")
+        .where("id", "in", querySchedule)
+        .get()
+        .then(res => {
+          let unpackedEvents = [];
 
-        res.forEach(event => {
-          unpackedEvents.push(event.data());
-        });
+          res.forEach(event => {
+            unpackedEvents.push(event.data());
+          });
 
-        this.setState({
-          schedule: unpackedEvents
+          this.setState({
+            schedule: unpackedEvents
+          });
         });
-      });
   }
 
   removeItem = itemIndex => {
@@ -62,7 +63,15 @@ class Schedule extends React.Component {
           </button>
           <button
             style={{ marginLeft: "3em" }}
-            onClick={() => this.setState({ eventView: "addEventForm" })}
+            onClick={() => {
+              if (!this.props.currentUser.homeGym) {
+                alert(
+                  "TEMP ALERT HANDLING: You must be a member of a gym to add an event!"
+                );
+                return;
+              }
+              this.setState({ eventView: "addEventForm" });
+            }}
           >
             Add
           </button>
@@ -90,7 +99,7 @@ class Schedule extends React.Component {
         {this.state.eventView === "addEventForm" ? (
           <AddEventForm
             gymId={this.props.currentUser.homeGym.id}
-            userId={this.props.currentUser.id}
+            userId={this.props.currentUser.id ? this.props.currentUser.id : ""}
           ></AddEventForm>
         ) : null}
       </div>
