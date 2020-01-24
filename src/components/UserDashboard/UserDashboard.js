@@ -200,17 +200,19 @@ class UserDashboard extends React.Component {
           </div>
         ) : null}
         {console.log("ugghhghghhg", currentUser)}
-        {gymInfoVisible && currentUser.homeGym.id && !editUserFormVisible ? (
-          <div className="gym-info-box">
-            <p style={{ color: "white", fontSize: "14px" }}>
-              Member of {currentUser.homeGym.name}
-            </p>
-            <div>
-              <Link to={"/user/gym"}>
-                <button style={{ margin: ".7em" }}>Gym Page</button>
-              </Link>
+        {currentUser.homeGym ? (
+          gymInfoVisible && currentUser.homeGym.id && !editUserFormVisible ? (
+            <div className="gym-info-box">
+              <p style={{ color: "white", fontSize: "14px" }}>
+                Member of {currentUser.homeGym.name}
+              </p>
+              <div>
+                <Link to={"/user/gym"}>
+                  <button style={{ margin: ".7em" }}>Gym Page</button>
+                </Link>
+              </div>
             </div>
-          </div>
+          ) : null
         ) : null}
 
         {!addNewGymVisible && !findGymVisible && !editUserFormVisible ? (
