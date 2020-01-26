@@ -45,6 +45,8 @@ class Schedule extends React.Component {
         });
   }
 
+  componentDidUpdate() {}
+
   removeItem = itemIndex => {
     const currentUser = this.props;
     let newCurrentUser = { ...currentUser };
@@ -97,6 +99,37 @@ class Schedule extends React.Component {
                   endTime={endTime}
                   gymId={gymId}
                   key={i + 1}
+                  eventCardCallback={() => {
+                    let events = this.props.currentUser.schedule.filter(
+                      item => item !== id
+                    );
+                    console.log("hiiii22333");
+
+                    if (events.length) {
+                      console.log("hiiii22");
+
+                      firestore
+                        .collection("event")
+                        .where("id", "in", events)
+                        .get()
+                        .then(res => {
+                          console.log("hiiii");
+                          let events = [];
+
+                          res.docs.forEach(event => {
+                            events.push(event.data());
+                          });
+
+                          this.setState({
+                            schedule: events
+                          });
+                        });
+                    } else {
+                      this.setState({
+                        schedule: []
+                      });
+                    }
+                  }}
                 ></EventCard>
               );
             })
@@ -113,6 +146,27 @@ class Schedule extends React.Component {
                 : ""
             }
             userId={this.props.currentUser.id ? this.props.currentUser.id : ""}
+            addEventCallback={entryId => {
+              let events = [...this.props.currentUser.schedule];
+              events.push(entryId);
+
+              firestore
+                .collection("event")
+                .where("id", "in", events)
+                .get()
+                .then(res => {
+                  let events = [];
+
+                  res.docs.forEach(event => {
+                    events.push(event.data());
+                  });
+
+                  this.setState({
+                    schedule: events,
+                    eventView: "list"
+                  });
+                });
+            }}
           ></AddEventForm>
         ) : null}
 

@@ -38,7 +38,6 @@ class AddEventForm extends React.Component {
     // let coordinates = await getAddressCoordinates(address).then(response => {
     //   return response;
     // });
-    console.log("this.statetttt ==>", this.state);
     const { title, startTime, endTime, description, gymId } = this.state;
 
     const eventCollection = firestore.collection("event");
@@ -60,6 +59,7 @@ class AddEventForm extends React.Component {
             gymCollection.doc(gymId).update({
               eventIds: firebase.firestore.FieldValue.arrayUnion(res.id)
             });
+            this.props.addEventCallback(res.id);
           });
       });
   }

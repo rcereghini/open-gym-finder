@@ -25,7 +25,6 @@ const EventCard = props => {
           </div>
           <button
             onClick={() => {
-              console.log(props.currentUser);
               let userRef = firestore
                 .collection("users")
                 .doc(props.currentUser.id);
@@ -34,6 +33,7 @@ const EventCard = props => {
                   props.entryId
                 )
               });
+              props.eventCardCallback(props.entryId);
             }}
           >
             Cancel
