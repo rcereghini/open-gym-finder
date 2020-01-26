@@ -103,17 +103,13 @@ class Schedule extends React.Component {
                     let events = this.props.currentUser.schedule.filter(
                       item => item !== id
                     );
-                    console.log("hiiii22333");
 
                     if (events.length) {
-                      console.log("hiiii22");
-
                       firestore
                         .collection("event")
                         .where("id", "in", events)
                         .get()
                         .then(res => {
-                          console.log("hiiii");
                           let events = [];
 
                           res.docs.forEach(event => {
