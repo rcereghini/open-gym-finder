@@ -64,6 +64,10 @@ class MarkerModal extends React.Component {
     console.log("view all");
   };
 
+  getNextEvent = props => {
+    return this.props.eventIds[0];
+  };
+
   render() {
     return (
       <div
@@ -76,9 +80,7 @@ class MarkerModal extends React.Component {
             <p>
               {/* Next Open Mat: <span>{this.props.gym.nextOpenMat.time}</span> */}
               Next Open Mat:{" "}
-              <span>
-                {this.props.eventIds ? this.props.eventIds[0] : "None"}
-              </span>
+              <span>{this.props.eventIds ? this.getNextEvent() : "None"}</span>
             </p>
             <h1>{this.props.gym.name}</h1>
             <p>⭐⭐⭐⭐⭐</p>
