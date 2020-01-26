@@ -1,15 +1,14 @@
 import React from "react";
 import "./eventCard.css";
+import { firestore } from "../../firebase/firebase.utils";
+import firebase from "firebase/app";
 
 import avatar01 from "../../assets/avatar01.png";
 import avatar02 from "../../assets/avatar02.png";
 import avatar03 from "../../assets/avatar03.png";
 
 const EventCard = props => {
-  // useEffect(() => {
-  //   console.log("props ===>  ....", props);
-  // });
-
+  console.log("props", props);
   return (
     <div>
       <div className="gym-item">
@@ -24,7 +23,21 @@ const EventCard = props => {
             <img style={{ height: "30px" }} src={avatar03} alt={""} />
             +1337
           </div>
-          <button onClick={() => console.log("cancel")}>Cancel</button>
+          <button
+            onClick={() => {
+              console.log(props.currentUser);
+              let userRef = firestore
+                .collection("users")
+                .doc(props.currentUser.id);
+              userRef.update({
+                schedule: firebase.firestore.FieldValue.arrayRemove(
+                  props.entryId
+                )
+              });
+            }}
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>

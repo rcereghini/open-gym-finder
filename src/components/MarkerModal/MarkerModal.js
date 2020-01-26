@@ -55,9 +55,13 @@ class MarkerModal extends React.Component {
   rsvpClickHandler = props => {
     let userRef = firestore.collection("users").doc(this.props.userId);
 
-    userRef.update({
-      schedule: firebase.firestore.FieldValue.arrayUnion(this.props.gym.name)
-    });
+    console.log(this.props);
+    if (this.props.eventIds.length)
+      userRef.update({
+        schedule: firebase.firestore.FieldValue.arrayUnion(
+          this.props.eventIds[0]
+        )
+      });
   };
 
   viewAllClickHandler = props => {
@@ -82,9 +86,9 @@ class MarkerModal extends React.Component {
               Next Open Mat:{" "}
               <span>{this.props.eventIds ? this.getNextEvent() : "None"}</span>
             </p>
-            <h1>{this.props.gym.name}</h1>
+            <h1>{this.props.selectedMarker.gymName}</h1>
             <p>⭐⭐⭐⭐⭐</p>
-            <p>{this.props.gym.description}</p>
+            <p>{this.props.selectedMarker.description}</p>
             <div className="rsvp-details">
               {this.props.eventIds ? (
                 <div className="rsvp-attendees">
@@ -99,8 +103,8 @@ class MarkerModal extends React.Component {
                   </p>
                 </div>
               ) : null}
-
-              {!this.props.eventIds ? (
+              {console.log("proproproprs", this.props)}
+              {!this.props.eventIds[0] ? (
                 <p style={{ width: "100%" }}>
                   No upcoming events.<br></br> Check Again Soon!
                 </p>

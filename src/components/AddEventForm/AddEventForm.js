@@ -1,5 +1,7 @@
 import React from "react";
 import { firestore } from "../../firebase/firebase.utils";
+import firebase from "firebase/app";
+
 import "./addEventForm.css";
 // import { getAddressCoordinates } from "../../geo/googleMaps";
 
@@ -36,12 +38,15 @@ class AddEventForm extends React.Component {
     // let coordinates = await getAddressCoordinates(address).then(response => {
     //   return response;
     // });
-
+    console.log("this.statetttt ==>", this.state);
     const { title, startTime, endTime, description, gymId } = this.state;
 
     const eventCollection = firestore.collection("event");
+    const gymCollection = firestore.collection("gym");
 
     //Add event then update ID
+    let userRef = firestore.collection("users").doc(this.props.userId);
+
     eventCollection
       .add({ title, startTime, endTime, description, gymId })
       .then(res => {
@@ -49,7 +54,12 @@ class AddEventForm extends React.Component {
           .doc(res.id)
           .update({ id: res.id })
           .then(() => {
-            console.log("CLOSE OUT THIS HERE");
+            userRef.update({
+              schedule: firebase.firestore.FieldValue.arrayUnion(res.id)
+            });
+            gymCollection.doc(gymId).update({
+              eventIds: firebase.firestore.FieldValue.arrayUnion(res.id)
+            });
           });
       });
   }

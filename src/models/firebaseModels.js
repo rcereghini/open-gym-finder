@@ -8,6 +8,7 @@ class FirebaseModels {
       createdAt: null,
       displayName: null,
       email: null,
+      homeGym: {},
       schedule: []
     };
   }

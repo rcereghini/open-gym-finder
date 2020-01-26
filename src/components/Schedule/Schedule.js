@@ -24,7 +24,9 @@ class Schedule extends React.Component {
   componentDidMount() {
     const querySchedule = this.props.currentUser.schedule;
 
-    if (querySchedule)
+    console.log("querySchedule ===>", querySchedule);
+
+    if (querySchedule.length)
       firestore
         .collection("event")
         .where("id", "in", querySchedule)
@@ -32,6 +34,7 @@ class Schedule extends React.Component {
         .then(res => {
           let unpackedEvents = [];
 
+          console.log("response ===>", res);
           res.forEach(event => {
             unpackedEvents.push(event.data());
           });
@@ -67,6 +70,8 @@ class Schedule extends React.Component {
           <button
             style={{ marginLeft: "3em" }}
             onClick={() => {
+              console.log("entry ===>", this.props.currentUser);
+
               if (!this.props.currentUser.homeGym.id) {
                 this.setState({ isModalActive: true });
                 return;
@@ -77,12 +82,15 @@ class Schedule extends React.Component {
             Add
           </button>
         </div>
+        {console.log(this.state.schedule, this.state.eventView)}
         {this.state.schedule && this.state.eventView === "list"
           ? this.state.schedule.map((entry, i) => {
+              console.log("entry ===>", entry);
               let { id, description, title, startTime, endTime, gymId } = entry;
               return (
                 <EventCard
                   entryId={id}
+                  currentUser={this.props.currentUser}
                   description={description}
                   title={title}
                   startTime={startTime}
@@ -99,7 +107,11 @@ class Schedule extends React.Component {
 
         {this.state.eventView === "addEventForm" ? (
           <AddEventForm
-            gymId={this.props.currentUser.homeGym.id}
+            gymId={
+              this.props.currentUser.homeGym
+                ? this.props.currentUser.homeGym.id
+                : ""
+            }
             userId={this.props.currentUser.id ? this.props.currentUser.id : ""}
           ></AddEventForm>
         ) : null}

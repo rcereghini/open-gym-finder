@@ -86,12 +86,14 @@ export class MainMap extends Component {
           }}
         >
           {this.state.markers.map((marker, i) => {
+            console.log("marker ==>", marker);
             return marker.coordinates ? (
               <Marker
                 key={i + 1}
                 onClick={this.onMarkerClick}
                 name={i + 1}
                 eventIds={marker.eventIds}
+                description={marker.description}
                 position={{
                   lat: marker.coordinates.results[0]
                     ? marker.coordinates.results[0].geometry.location.lat
@@ -113,15 +115,18 @@ export class MainMap extends Component {
           >
             <MarkerModal
               gym={{
-                name: this.state.selectedMarker.gymName,
-                description: this.state.selectedMarker.description,
                 challengeRemainingCount: 3,
                 nextOpenMat: {
                   time: "Monday, June 15th, 5:30PM",
                   attendeeCount: 1337
-                }
+                },
+                ...this.state.selectedMarker
               }}
-              eventIds={this.state.selectedMarker.eventIds}
+              eventIds={
+                this.state.selectedMarker.eventIds
+                  ? this.state.selectedMarker.eventIds
+                  : []
+              }
               userId={this.props.userId}
               schedule={this.props.schedule}
               selectedMarker={this.state.selectedMarker}

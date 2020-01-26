@@ -36,14 +36,13 @@ class UserDashboard extends React.Component {
     console.log("mount");
     let gymInfoVisibleStatus = false;
 
-    console.log("pre check ==>", this.props.currentUser.homeGym.id);
-
-    if (this.props.currentUser.homeGym.id)
-      gymInfoVisibleStatus =
-        this.props.currentUser.homeGym.id !== "" &&
-        this.props.currentUser.homeGym.id
-          ? true
-          : false;
+    if (this.props.currentUser.homeGym)
+      if (this.props.currentUser.homeGym.id)
+        gymInfoVisibleStatus =
+          this.props.currentUser.homeGym.id !== "" &&
+          this.props.currentUser.homeGym.id
+            ? true
+            : false;
 
     console.log("gymInfoVisibleStatus ===>", gymInfoVisibleStatus);
 

@@ -26,6 +26,7 @@ class GymList extends React.Component {
       .then(function(querySnapshot) {
         const GYM_DATA = [];
         querySnapshot.forEach(doc => {
+          console.log("qsnap doc ==>", doc);
           let data = { id: doc.ref.id, ...doc.data() };
           GYM_DATA.push(data);
         });
