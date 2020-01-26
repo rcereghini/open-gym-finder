@@ -16,6 +16,7 @@ class MarkerModal extends React.Component {
     };
 
     this.rsvpClickHandler = this.rsvpClickHandler.bind(this);
+    this.viewAllClickHandler = this.viewAllClickHandler.bind(this);
   }
 
   componentDidMount() {
@@ -59,6 +60,10 @@ class MarkerModal extends React.Component {
     });
   };
 
+  viewAllClickHandler = props => {
+    console.log("view all");
+  };
+
   render() {
     return (
       <div
@@ -79,7 +84,7 @@ class MarkerModal extends React.Component {
             <p>⭐⭐⭐⭐⭐</p>
             <p>{this.props.gym.description}</p>
             <div className="rsvp-details">
-              {!this.state.rsvpButtonDisabled ? (
+              {this.props.eventIds ? (
                 <div className="rsvp-attendees">
                   <div className="avatars">
                     <img style={{ height: "30px" }} src={avatar01} alt={""} />
@@ -93,17 +98,29 @@ class MarkerModal extends React.Component {
                 </div>
               ) : null}
 
-              {this.state.rsvpButtonDisabled ? (
+              {!this.props.eventIds ? (
                 <p style={{ width: "100%" }}>
                   No upcoming events.<br></br> Check Again Soon!
                 </p>
               ) : (
-                <button
-                  id="rsvpButton"
-                  onClick={this.rsvpClickHandler}
-                  disabled={this.state.rsvpButtonActive}
-                  className="rsvp-button"
-                ></button>
+                <div className="marker-modal-buttons">
+                  <button
+                    id="rsvpButton"
+                    onClick={this.rsvpClickHandler}
+                    disabled={this.state.rsvpButtonActive}
+                    className="rsvp-button"
+                  >
+                    RSVP NOW
+                  </button>
+                  <button
+                    id="viewAllButton"
+                    onClick={this.viewAllClickHandler}
+                    disabled={this.state.rsvpButtonActive}
+                    className="rsvp-button"
+                  >
+                    VIEW ALL
+                  </button>
+                </div>
               )}
             </div>
           </div>

@@ -4,7 +4,7 @@ h1 {
 }
 
 .marker-modal-main-div {
-  height: 39vh;
+  min-height: 40vh;
   width: 90vw;
   position: relative;
   display: flex;
@@ -12,6 +12,16 @@ h1 {
   align-items: center;
   font-family: "Shojumaru", cursive;
   font-weight: 100;
+  font-size: 12px;
+}
+
+.marker-modal-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.marker-modal-buttons > button {
   font-size: 12px;
 }
 
@@ -31,6 +41,10 @@ h1 {
 .gym-details {
   padding: 0.7em;
   padding-bottom: 1em;
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .gym-challenges {
@@ -47,10 +61,14 @@ h1 {
 
 .rsvp-details {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   margin: 0.5em;
+}
+
+.rsvp-button {
+  margin-top: 1em;
 }
 
 .attendee-count {
