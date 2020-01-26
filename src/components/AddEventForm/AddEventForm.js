@@ -56,7 +56,7 @@ class AddEventForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="add-event-form" onSubmit={this.handleSubmit}>
         <label>
           Title:
           <input

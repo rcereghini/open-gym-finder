@@ -1,16 +1,24 @@
-form {
+.add-gym-form {
   /* width: 350px; */
   color: white;
   border: 1px solid gold;
-  padding: 1em;
+  padding: 0.7em;
   border-radius: 5px;
   width: 100vw;
   margin-top: 0.7em;
 }
 
-form > label {
+.add-gym-form > label {
   display: grid;
   grid-template-columns: 145px 1fr;
+  font-size: 1em;
+  text-align: right;
+}
+
+.add-gym-form > label > input,
+textarea {
+  width: 100%;
+  margin-left: 0.5em;
 }
 
 .submit-button {
