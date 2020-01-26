@@ -1,84 +1,96 @@
 .App {
-	text-align: center;
-	display: grid;
-	height: 100vh;
-	grid-template-rows: 1fr 8fr 1fr;
+  text-align: center;
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 1fr 8fr 1fr;
 }
 
 h1 {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 body {
-	background-color: #242a2f;
-	height: 100vh;
-	margin: 0em;
-	font-family: "Shojumaru", cursive;
-	font-weight: 100;
+  background-color: #242a2f;
+  height: 100vh;
+  margin: 0em;
+  font-family: "Shojumaru", cursive;
+  font-weight: 100;
 }
 
 p {
-	font-size: 1.2em;
+  /* font-size: 1.2em; */
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 button,
 input[type="submit"] {
-	border: 2px solid gold;
-	font-family: "Shojumaru", cursive;
-	font-size: 14px;
-	border-radius: 5px;
-	color: white;
-	background-color: #242a2f;
-	padding: 0.88em 1.38em;
+  border: 2px solid gold;
+  font-family: "Shojumaru", cursive;
+  font-size: 14px;
+  border-radius: 5px;
+  color: white;
+  background-color: #242a2f;
+  padding: 0.88em 1.38em;
 }
 
 button:hover {
-	background-color: #444444;
-	cursor: pointer;
+  background-color: #444444;
+  cursor: pointer;
 }
 
 .header-wrap {
-	padding: 0em 1em;
-	background: rgb(33, 37, 41);
-	background: linear-gradient(0deg, rgba(33, 37, 41, 1) 0%, rgba(60, 60, 71, 1) 100%);
+  padding: 0em 1em;
+  background: rgb(33, 37, 41);
+  background: linear-gradient(
+    0deg,
+    rgba(33, 37, 41, 1) 0%,
+    rgba(60, 60, 71, 1) 100%
+  );
 }
 
 .bars-icon-styles {
-	font-size: 30px;
+  font-size: 30px;
 }
 /* #181c1f */
 
 .menu-modal {
-	background: linear-gradient(0deg, rgba(33, 37, 41, 1) 0%, rgba(60, 60, 71, 1) 100%);
-	border-radius: 5px;
+  background: linear-gradient(
+    0deg,
+    rgba(33, 37, 41, 1) 0%,
+    rgba(60, 60, 71, 1) 100%
+  );
+  border-radius: 5px;
 }
 
 .menu-modal-wrap {
-	background-color: rgba(0, 0, 0, 0.7);
-	height: 80vh;
-	width: 100vw;
-	position: fixed;
-	z-index: 10;
-	left: 0;
-	top: 10vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 80vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 10vh;
 }
 .mail-modal {
-	background: linear-gradient(0deg, rgba(33, 37, 41, 1) 0%, rgba(60, 60, 71, 1) 100%);
-	border-radius: 5px;
+  background: linear-gradient(
+    0deg,
+    rgba(33, 37, 41, 1) 0%,
+    rgba(60, 60, 71, 1) 100%
+  );
+  border-radius: 5px;
 }
 
 .mail-modal-wrap {
-	background-color: rgba(0, 0, 0, 0.7);
-	height: 80vh;
-	width: 100vw;
-	position: fixed;
-	z-index: 10;
-	left: 0;
-	top: 10vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 80vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 10vh;
 }

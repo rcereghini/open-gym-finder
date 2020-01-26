@@ -8,10 +8,14 @@ const Modal = props => {
     <Fragment>
       <div className="modal-outer">
         <div className="modal-inner">
-          <span className="close-icon" onClick={() => setInactive()}>
+          <span
+            className="close-icon"
+            style={{ fontSize: "16px" }}
+            onClick={() => setInactive()}
+          >
             x
           </span>
-          <p>{innerText}</p>
+          <p style={{ fontSize: "16px" }}>{innerText}</p>
         </div>
       </div>
     </Fragment>
