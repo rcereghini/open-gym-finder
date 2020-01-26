@@ -42,11 +42,6 @@ export class MainMap extends Component {
     // console.log("props, marker, e", props, "marker", marker, e, this);
     // console.log("props marker click", this.props);
 
-    console.log(
-      "ON MARKER CLICK SHOULD FIRE OFF THE REQUEST FOR THE EVENT DETAILS TO REDUCE FIRESTORE READS"
-    );
-    console.log("GYM JOIN IS NOW BROKEN TOO. gQuit seems to fire regardless.");
-
     !this.state.showingInfoWindow || marker.name != this.state.currentMarker
       ? this.setState({
           selectedMarker: this.state.markers[props.name - 1],

@@ -7,6 +7,7 @@ import MainMap from "./components/MainMap/MainMap";
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import GymPage from "./components/GymPage/GymPage";
+import GymEventList from "./components/GymEventList/GymEventList";
 import Modal from "./components/Modal/Modal";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
@@ -238,6 +239,21 @@ class App extends React.Component {
                   currentUser={this.props.currentUser}
                   userId={this.props.currentUser.id}
                   schedule={this.props.currentUser.schedule}
+                />
+              ) : (
+                <Redirect to="/" />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/roam/:gym"
+            render={() =>
+              this.props.currentUser ? (
+                <GymEventList
+                //   currentUser={this.props.currentUser}
+                //   userId={this.props.currentUser.id}
+                //   schedule={this.props.currentUser.schedule}
                 />
               ) : (
                 <Redirect to="/" />

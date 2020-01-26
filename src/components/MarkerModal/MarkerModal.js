@@ -10,9 +10,14 @@ import firebase from "firebase/app";
 class MarkerModal extends React.Component {
   constructor(props) {
     super(props);
+
+    let nextEvent = this.getNextEvent();
+    console.log("nextEvent", nextEvent);
+
     this.state = {
       rsvpButtonDisabled: true,
-      eventInfo: {}
+      eventInfo: {},
+      nextEvent: nextEvent
     };
 
     this.rsvpClickHandler = this.rsvpClickHandler.bind(this);
@@ -22,34 +27,23 @@ class MarkerModal extends React.Component {
   componentDidMount() {
     //GET EVENTS WHERE EQUALS THIS.PROPS.CURRENTUSER.SCHEDULE
 
-    console.log("props ==>", this.props);
+    let nextEvent = this.getNextEvent();
+
     if (this.props.userId && this.props.schedule)
       this.props.schedule.includes(this.props.gym.name)
         ? this.setState({ rsvpButton: "Cancel" }, () => {
             console.log("state set");
           })
         : console.log("false", this.props.schedule, this.props.gym.name);
+
+    this.setState({
+      nextEvent: nextEvent
+    });
   }
 
   componentDidUpdate() {
-    // if (this.props.eventIds)
-    //   if (this.props.eventIds.length) {
-    //     firestore
-    //       .collection("event")
-    //       .where("id", "in", this.props.eventIds)
-    //       .orderBy("startDate")
-    //       .get()
-    //       .then(res => {
-    //         console.log("res =+>", res);
-    //         let unpackedEvents = [];
-    //         res.forEach(event => {
-    //           unpackedEvents.push(event.data());
-    //         });
-    //         console.log("unpacked events ===>", unpackedEvents);
-    //         // unpacked;
-    //         this.setState({ eventInfo: unpackedEvents });
-    //       });
-    //   }
+    // this.getNextEvent();
+    console.log("componentDidUpdate");
   }
 
   rsvpClickHandler = props => {
@@ -69,7 +63,52 @@ class MarkerModal extends React.Component {
   };
 
   getNextEvent = props => {
-    return this.props.eventIds[0];
+    let events = [];
+    console.log("this.props -->", this.props);
+    console.log("this.props.eventIds -->", this.props.schedule);
+    if (this.props.schedule.length) {
+      if (this.props.schedule.length > 10) {
+        let queryTenCap = this.props.schedule.slice(0, 10);
+        console.log("queryTenCap ==>", queryTenCap);
+        firestore
+          .collection("event")
+          .where("id", "in", queryTenCap)
+          .get()
+          .then(res => {
+            res.docs.forEach(event => {
+              events.push(event.data());
+            });
+          })
+          .then(() => {
+            let { startTime } = events[0];
+            console.log("startTime ===>", startTime);
+            this.setState({ nextEvent: events[0].startTime });
+            return startTime;
+          });
+      } else {
+        firestore
+          .collection("event")
+          .where("id", "in", this.props.schedule)
+          .get()
+          .then(res => {
+            res.docs.forEach(event => {
+              console.log("data ", event.data());
+              events.push(event.data());
+            });
+            if (events[0]) {
+              this.setState(
+                { nextEvent: events[0].startTime },
+                () => events[0].startTime
+              );
+              return events[0].startTime;
+            } else return "None.";
+          });
+      }
+    } else {
+      console.log("not even one");
+      this.setState({ nextEvent: "None." });
+      return "None.";
+    }
   };
 
   render() {
@@ -83,14 +122,13 @@ class MarkerModal extends React.Component {
           <div className="gym-details">
             <p>
               {/* Next Open Mat: <span>{this.props.gym.nextOpenMat.time}</span> */}
-              Next Open Mat:{" "}
-              <span>{this.props.eventIds ? this.getNextEvent() : "None"}</span>
+              Next Open Mat: <span>{this.state.nextEvent}</span>
             </p>
             <h1>{this.props.selectedMarker.gymName}</h1>
             <p>⭐⭐⭐⭐⭐</p>
             <p>{this.props.selectedMarker.description}</p>
             <div className="rsvp-details">
-              {this.props.eventIds ? (
+              {this.props.eventIds[0] ? (
                 <div className="rsvp-attendees">
                   <div className="avatars">
                     <img style={{ height: "30px" }} src={avatar01} alt={""} />
