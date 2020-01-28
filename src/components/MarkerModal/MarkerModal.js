@@ -47,9 +47,9 @@ class MarkerModal extends React.Component {
   }
 
   rsvpClickHandler = props => {
+    //Also update event with addition to userId array
     let userRef = firestore.collection("users").doc(this.props.userId);
 
-    console.log(this.props);
     if (this.props.eventIds.length)
       userRef.update({
         schedule: firebase.firestore.FieldValue.arrayUnion(
@@ -64,12 +64,9 @@ class MarkerModal extends React.Component {
 
   getNextEvent = props => {
     let events = [];
-    console.log("this.props -->", this.props);
-    console.log("this.props.eventIds -->", this.props.schedule);
     if (this.props.schedule.length) {
       if (this.props.schedule.length > 10) {
         let queryTenCap = this.props.schedule.slice(0, 10);
-        console.log("queryTenCap ==>", queryTenCap);
         firestore
           .collection("event")
           .where("id", "in", queryTenCap)
@@ -81,7 +78,6 @@ class MarkerModal extends React.Component {
           })
           .then(() => {
             let { startTime } = events[0];
-            console.log("startTime ===>", startTime);
             this.setState({ nextEvent: events[0].startTime });
             return startTime;
           });
@@ -92,7 +88,6 @@ class MarkerModal extends React.Component {
           .get()
           .then(res => {
             res.docs.forEach(event => {
-              console.log("data ", event.data());
               events.push(event.data());
             });
             if (events[0]) {
@@ -105,7 +100,6 @@ class MarkerModal extends React.Component {
           });
       }
     } else {
-      console.log("not even one");
       this.setState({ nextEvent: "None." });
       return "None.";
     }
