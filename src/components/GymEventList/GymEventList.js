@@ -1,6 +1,5 @@
 import React from "react";
 import EventCard from "../EventCard/EventCard";
-import { Route } from "react-router-dom";
 import "./gymEventList.css";
 
 const GymEventList = ({ match }, props) => {
@@ -8,8 +7,9 @@ const GymEventList = ({ match }, props) => {
   console.log("match ===>", match);
   return (
     <div>
-      GymEventList
-      {}
+      <h2>GymEventList</h2>
+      <p>{match.params.gym}</p>
+      <p>UNDER CONSTRUCTION - PLANNED COMPLETION BY 1/29/2020</p>
     </div>
   );
 };
