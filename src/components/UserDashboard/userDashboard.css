@@ -26,6 +26,7 @@ select {
   display: grid;
   grid-template-columns: 1fr 2fr;
   margin-top: 0.7em;
+  width: 100%;
 }
 
 .gym-info-box {
@@ -38,6 +39,7 @@ select {
 
 .avatar-image {
   height: 32vw;
+  max-height: 200px;
 }
 
 .user-stats-details {
