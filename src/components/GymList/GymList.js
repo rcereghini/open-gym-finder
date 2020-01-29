@@ -12,8 +12,6 @@ class GymList extends React.Component {
       gymSearchFilter: ""
     };
 
-    console.log("this.props.currentUser ===>", this.props.currentUser);
-
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleGymItemClick = this.handleGymItemClick.bind(this);
   }
@@ -26,7 +24,6 @@ class GymList extends React.Component {
       .then(function(querySnapshot) {
         const GYM_DATA = [];
         querySnapshot.forEach(doc => {
-          console.log("qsnap doc ==>", doc);
           let data = { id: doc.ref.id, ...doc.data() };
           GYM_DATA.push(data);
         });
@@ -39,8 +36,6 @@ class GymList extends React.Component {
   }
 
   handleGymItemClick(gym) {
-    console.log("TEST =+===>", this.props.currentUser);
-
     firestore
       .collection("users")
       .doc(this.props.currentUser.id)
