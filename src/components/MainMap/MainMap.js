@@ -132,7 +132,7 @@ export class MainMap extends Component {
           </InfoWindowEx>
         </Map>
         {this.state.redirect ? (
-          <Redirect push to={`/roam/${this.state.selectedMarker.gymName}`} />
+          <Redirect push to={`/roam/${this.state.selectedMarker.id}`} />
         ) : null}
       </div>
     );
