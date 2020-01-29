@@ -1,5 +1,6 @@
 import React from "react";
 import { firestore } from "../../firebase/firebase.utils";
+import firebase from "firebase/app";
 import "./addGymForm.css";
 import { getAddressCoordinates } from "../../geo/googleMaps";
 
@@ -42,10 +43,35 @@ class AddGymForm extends React.Component {
     });
 
     const { phone, website, description, type, gymName } = this.state;
+    let userRef = firestore.collection("users").doc(this.props.currentUser.id);
 
     firestore
       .collection("gym")
-      .add({ phone, website, type, gymName, description, coordinates });
+      .add({ phone, website, type, gymName, description, coordinates })
+      .then(res => {
+        firestore
+          .collection("gym")
+          .doc(res.id)
+          .update({ id: res.id })
+          .then(() => {
+            firestore
+              .collection("users")
+              .doc(this.props.currentUser.id)
+              .set({
+                ...this.props.currentUser,
+                homeGym: {
+                  name: gymName,
+                  id: res.id
+                }
+              })
+              .then(() => {
+                this.props.gymAddedCallback();
+              });
+            userRef.update({
+              gymHistory: firebase.firestore.FieldValue.arrayUnion(res.id)
+            });
+          });
+      });
   }
 
   render() {

@@ -187,7 +187,20 @@ class UserDashboard extends React.Component {
             <button onClick={this.addNewGymConfirm}>Continue</button>
           </div>
         ) : null}
-        {addNewGymVisible && addNewGymConfirm ? <AddGymForm /> : null}
+        {addNewGymVisible && addNewGymConfirm ? (
+          <AddGymForm
+            currentUser={this.props.currentUser}
+            gymAddedCallback={() =>
+              this.setState({
+                addNewGymVisible: false,
+                addNewGymConfirm: false,
+                editUserFormVisible: false,
+                findGymVisible: false,
+                gymInfoVisible: this.props.currentUser.homeGym.id ? true : false
+              })
+            }
+          />
+        ) : null}
 
         {!gymInfoVisible && !editUserFormVisible ? (
           <div

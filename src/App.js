@@ -248,12 +248,13 @@ class App extends React.Component {
           <Route
             exact
             path="/roam/:gym"
-            render={() =>
+            render={params =>
               this.props.currentUser ? (
                 <GymEventList
-                //   currentUser={this.props.currentUser}
-                //   userId={this.props.currentUser.id}
-                //   schedule={this.props.currentUser.schedule}
+                  match={params.match}
+                  //   currentUser={this.props.currentUser}
+                  //   userId={this.props.currentUser.id}
+                  //   schedule={this.props.currentUser.schedule}
                 />
               ) : (
                 <Redirect to="/" />

@@ -59,7 +59,8 @@ class MarkerModal extends React.Component {
   };
 
   viewAllClickHandler = props => {
-    console.log("view all");
+    console.log("view all", this.props);
+    this.props.gymListRedirect();
   };
 
   getNextEvent = props => {

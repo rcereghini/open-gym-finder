@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link, Redirect } from "react-router-dom";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 import MarkerModal from "../MarkerModal/MarkerModal";
 import InfoWindowEx from "./InfoWindowEx/InfoWindowEx";
@@ -14,6 +15,7 @@ export class MainMap extends Component {
     this.state = {
       markers: [],
       selectedMarker: {},
+      redirect: false,
       currentUser: this.props.currentUser
     };
   }
@@ -125,14 +127,13 @@ export class MainMap extends Component {
               userId={this.props.userId}
               schedule={this.props.schedule}
               selectedMarker={this.state.selectedMarker}
-              // buttonState={
-              //   this.props.schedule.includes(this.props.gym.name)
-              //     ? "Cancel"
-              //     : "RSVP"
-              // }
+              gymListRedirect={() => this.setState({ redirect: true })}
             />
           </InfoWindowEx>
         </Map>
+        {this.state.redirect ? (
+          <Redirect push to={`/roam/${this.state.selectedMarker.gymName}`} />
+        ) : null}
       </div>
     );
   }
