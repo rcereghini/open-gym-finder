@@ -40,7 +40,7 @@ const GymEventList = ({ match }, props) => {
     <div>
       <h2>GymEventList</h2>
       <p>Gym Id: {match.params.gym}</p>
-      <p>UNDER CONSTRUCTION - PLANNED COMPLETION BY 1/30/2020</p>
+      <p>UNDER CONSTRUCTION</p>
       <br></br>
       <h2 style={{ marginTop: "2em" }}>Event Ids (TEMP):</h2>
       {eventNodes}
